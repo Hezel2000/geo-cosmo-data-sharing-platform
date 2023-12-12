@@ -5,6 +5,7 @@ from pathlib import Path
 
 #base_url = 'https://raw.githubusercontent.com/Hezel2000/cosmogeochemdata/master/'
 
+
 def upload_to_github(file_path, commit_message):
     # Replace these variables with your GitHub repository details
     repo_owner = "Hezel2000"
@@ -36,7 +37,7 @@ def upload_to_github(file_path, commit_message):
     }
 
     # Use your GitHub token here
-    github_token = "GitHub_Token"
+    github_token = st.secrets["GitHub_Token"]
     response = requests.put(
         github_api_url,
         headers={"Authorization": f"Bearer {github_token}"},
