@@ -38,12 +38,12 @@ def upload_to_github(file_path, commit_message):
 
     # Use your GitHub token here
     github_token = st.secrets["GitHub_Token"]
-    return st.write(github_token)
-    # response = requests.put(
-    #     github_api_url,
-    #     headers={"Authorization": f"Bearer {github_token}"},
-    #     json=commit_data
-    # )
+    response = requests.put(
+        github_api_url,
+        headers={"Authorization": f"Bearer {github_token}"},
+        json=commit_data
+    )
+    return st.write(response)
 
     # if response.status_code == 200:
     #     st.success(f"File '{file_name}' uploaded to GitHub successfully!")
