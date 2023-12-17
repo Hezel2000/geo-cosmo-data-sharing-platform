@@ -16,16 +16,13 @@ def upload_to_github(file_path, commit_message):
     # Get the content of the existing file on GitHub
     github_api_url = f"https://api.github.com/repos/{repo_owner}/{repo_name}/contents/{file_name}"
     response = requests.get(github_api_url)
-
+    
     if response.status_code == 200:
         existing_content = response.json()
         sha = existing_content["sha"]
     else:
         existing_content = None
         sha = None
-    
-    print(response)
-    print(sha)
 
     # Read the local file content
     with open(file_path, "rb") as file:
@@ -41,16 +38,17 @@ def upload_to_github(file_path, commit_message):
 
     # Use your GitHub token here
     github_token = st.secrets["GitHub_Token"]
-    response = requests.put(
-        github_api_url,
-        headers={"Authorization": f"Bearer {github_token}"},
-        json=commit_data
-    )
+    return st.write(github_token)
+    # response = requests.put(
+    #     github_api_url,
+    #     headers={"Authorization": f"Bearer {github_token}"},
+    #     json=commit_data
+    # )
 
-    if response.status_code == 200:
-        st.success(f"File '{file_name}' uploaded to GitHub successfully!")
-    else:
-        st.error(f"Error uploading file to GitHub. Status Code: {response.status_code}, Response: {response.text}")
+    # if response.status_code == 200:
+    #     st.success(f"File '{file_name}' uploaded to GitHub successfully!")
+    # else:
+    #     st.error(f"Error uploading file to GitHub. Status Code: {response.status_code}, Response: {response.text}")
 
 st.title("GitHub File Uploader")
 
