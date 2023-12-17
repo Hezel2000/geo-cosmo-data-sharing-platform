@@ -37,7 +37,8 @@ def upload_to_github(file_path, commit_message):
     }
 
     # Use your GitHub token here
-    github_token = st.secrets["GitHub_Token"]
+    #github_token = st.secrets["GitHub_Token"]
+    github_token = "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"
     response = requests.put(
         github_api_url,
         headers={"Authorization": f"Bearer {github_token}"},
