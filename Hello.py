@@ -43,7 +43,7 @@ def upload_to_github(file_path, commit_message):
         headers={"Authorization": f"Bearer {github_token}"},
         json=commit_data
     )
-    return st.write(response)
+    return st.write(response.text)
 
     # if response.status_code == 200:
     #     st.success(f"File '{file_name}' uploaded to GitHub successfully!")
