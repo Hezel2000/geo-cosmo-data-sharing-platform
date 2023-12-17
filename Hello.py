@@ -23,6 +23,9 @@ def upload_to_github(file_path, commit_message):
     else:
         existing_content = None
         sha = None
+    
+    print(response)
+    print(sha)
 
     # Read the local file content
     with open(file_path, "rb") as file:
