@@ -9,7 +9,7 @@ from pathlib import Path
 def upload_to_github(file_path, commit_message):
     # Replace these variables with your GitHub repository details
     repo_owner = "Hezel2000"
-    repo_name = "cosmogeochemdata"
+    repo_name = "GeoCosmoChemDataAndTools"
     branch_name = "main"
     file_name = file_path.name
 
