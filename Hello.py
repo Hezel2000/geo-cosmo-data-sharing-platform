@@ -5,9 +5,7 @@ from pathlib import Path
 
 #base_url = 'https://raw.githubusercontent.com/Hezel2000/cosmogeochemdata/master/'
 
-
 def upload_to_github(file_path, commit_message):
-    # Replace these variables with your GitHub repository details
     repo_owner = "Hezel2000"
     repo_name = "GeoCosmoChemDataAndTools"
     branch_name = "main"
