@@ -72,6 +72,6 @@ if uploaded_file is not None:
 
         if response.status_code == 201:
             st.success(f"File was {response.text} uploaded to GitHub successfully!")
-            st.write(response.text)
+            st.write(response.text['content']['name'])
         else:
             st.error(f"Error uploading file to GitHub. Status Code: {response.status_code}, Response: {response.text}")
