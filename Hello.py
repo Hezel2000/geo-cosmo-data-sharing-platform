@@ -47,12 +47,7 @@ def upload_to_github(file_path, commit_message):
         headers={"Authorization": f"Bearer {github_token}"},
         json=commit_data
     )
-    #return st.write(response, response.text)
-
-    if response.status_code == 201:
-        return st.success(f"File '{file_name}' uploaded to GitHub successfully!")
-    else:
-        return st.error(f"Error uploading file to GitHub. Status Code: {response.status_code}, Response: {response.text}")
+    return response
 
 st.title("GitHub File Uploader")
 
@@ -72,4 +67,9 @@ if uploaded_file is not None:
     # Commit and push changes to GitHub
     commit_message = st.text_input("Enter commit message:")
     if st.button("Upload to GitHub"):
-        upload_to_github(file_path, commit_message)
+        response = upload_to_github(file_path, commit_message)
+        
+        if response.status_code == 201:
+            return st.success(f"File '{file_name}' uploaded to GitHub successfully!")
+        else:
+            return st.error(f"Error uploading file to GitHub. Status Code: {response.status_code}, Response: {response.text}")
