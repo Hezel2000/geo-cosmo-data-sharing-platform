@@ -71,6 +71,7 @@ if uploaded_file is not None:
         response = upload_to_github(file_path, commit_message)
 
         if response.status_code == 201:
-            st.success(f"File was {response.text['name']} uploaded to GitHub successfully!")
+            st.success(f"File was {response.text} uploaded to GitHub successfully!")
+            st.write(response.text)
         else:
             st.error(f"Error uploading file to GitHub. Status Code: {response.status_code}, Response: {response.text}")
