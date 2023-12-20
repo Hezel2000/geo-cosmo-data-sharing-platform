@@ -4,6 +4,5 @@ pandas
 pydeck
 streamlit
 requests
+base64
 
-mag4
-bokeh==2.4.3

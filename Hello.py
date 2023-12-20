@@ -2,6 +2,7 @@
 import streamlit as st
 import requests
 from pathlib import Path
+import base64 
 
 #base_url = 'https://raw.githubusercontent.com/Hezel2000/cosmogeochemdata/master/'
 
@@ -23,13 +24,18 @@ def upload_to_github(file_path, commit_message):
         sha = None
 
     # Read the local file content
-    with open(file_path, "rb") as file:
+    with open(file_path, "base64") as file:
         file_content = file.read()
+        base64_bytes = base64.b64encode(file_content) 
+        base64_string = base64_bytes.decode("utf-8")
+    # sample_string = "GeeksForGeeks is the best"
+    # sample_string_bytes = sample_string.encode("ascii") 
+    # print(f"Encoded string: {base64_string}") 
 
     # Create a new commit with the updated file
     commit_data = {
         "message": commit_message,
-        "content": file_content.decode("utf-8"),
+        "content": base64_string,
         "sha": sha,
         "branch": branch_name
     }
