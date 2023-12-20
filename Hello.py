@@ -6,6 +6,10 @@ import base64
 
 #base_url = 'https://raw.githubusercontent.com/Hezel2000/cosmogeochemdata/master/'
 
+st.title('Will soon become functional again')
+
+st.stop()
+
 def upload_to_github(file_path, commit_message):
     repo_owner = "Hezel2000"
     repo_name = "GeoCosmoChemDataAndTools"
