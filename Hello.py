@@ -8,7 +8,7 @@ import base64
 
 st.title('Will soon become functional again')
 
-st.stop()
+#st.stop()
 
 def upload_to_github(file_path, commit_message):
     repo_owner = "Hezel2000"
