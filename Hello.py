@@ -24,7 +24,7 @@ def upload_to_github(file_path, commit_message):
         sha = None
 
     # Read the local file content
-    with open(file_path, "base64") as file:
+    with open(file_path, "rb") as file:
         file_content = file.read()
         base64_bytes = base64.b64encode(file_content) 
         base64_string = base64_bytes.decode("utf-8")
