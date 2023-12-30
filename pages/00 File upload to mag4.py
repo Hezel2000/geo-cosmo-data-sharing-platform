@@ -57,6 +57,7 @@ def upload_to_github(file_path, commit_message, file_type):
     return response
 
 
+
 st.title("File Upload to the mag4 Database")
 st.header('Choose file to upload')
 
