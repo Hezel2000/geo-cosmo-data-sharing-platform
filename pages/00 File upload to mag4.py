@@ -11,12 +11,7 @@ def upload_to_github(file_path, commit_message, file_type):
     repo_owner = "Hezel2000"
     repo_name = "GeoCosmoChemDataAndTools"
     branch_name = "main"
-    if file_type == 'csv':
-        file_name = file_path.name
-    elif file_type == 'json':
-        file_name == file_path
-    else:
-        st.write('Something is wrong with the file_path.')
+    file_name = file_path.name
 
     # Get the content of the existing file on GitHub
     github_api_url = f"https://api.github.com/repos/{repo_owner}/{repo_name}/contents/{file_name}"
@@ -103,6 +98,7 @@ if uploaded_file is not None:
 
     #Writing the json file
     file_path_json_metadata = Path("uploads") / 'metadata.json'
+    st.write(file_path_json_metadata)
 
     with open(file_path_json_metadata, "w") as f:
         json.dump(json_metadata, f)
