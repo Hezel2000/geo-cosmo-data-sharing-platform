@@ -97,7 +97,7 @@ if uploaded_file is not None:
     }
 
     #Writing the json file
-    file_path_json_metadata = Path("uploads") / Path(uploaded_file).stem+'.json'
+    file_path_json_metadata = Path("uploads") / uploaded_file.name.split('.')[0]+'.json'
     st.write(file_path_json_metadata)
 
     with open(file_path_json_metadata, "w") as f:
