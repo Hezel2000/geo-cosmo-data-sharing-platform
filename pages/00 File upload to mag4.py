@@ -66,8 +66,6 @@ file_uploader_enable_parameter=False
 
 # File uploader widget
 uploaded_file = st.file_uploader('', type=["csv", "xlsx"], label_visibility='collapsed', disabled=file_uploader_enable_parameter)
-metadata_json_file_name = uploaded_file.name.split('.')[0]+'.json'
-st.write(metadata_json_file_name)
 
 if uploaded_file is not None:
     # Save the uploaded file to the server in the uploads folder
@@ -80,7 +78,7 @@ if uploaded_file is not None:
 
     st.header('Metadata')
 
-    # Metadata
+    # Metadata Fields
     st.subheader('Mandatory')
     commit_message = 'to be replaced with ->' #uploader_orcid
     meta_name = st.text_input('Name', value=None, placeholder='Dominik Hezel')
@@ -100,6 +98,7 @@ if uploaded_file is not None:
     }
 
     #Writing the json file
+    metadata_json_file_name = uploaded_file.name.split('.')[0]+'.json'
     file_path_json_metadata = Path("uploads") / metadata_json_file_name
     st.write(file_path_json_metadata)
 
@@ -112,14 +111,12 @@ if uploaded_file is not None:
     # Commit and push changes to GitHub
     if st.button("Upload to GitHub"):
         response = upload_to_github(file_path_user_dataset, commit_message, 'csv')
-
         if response.status_code == 201:
             st.success(f"Dataset file was successfully uploaded to GitHub.")
         else:
             st.error(f"Error uploading file to GitHub. Status Code: {response.status_code}, Response: {response.text}")
 
         response = upload_to_github(file_path_json_metadata, commit_message, 'json')
-
         if response.status_code == 201:
             st.success(f"Metadata file was successfully uploaded to GitHub.")
         else:
