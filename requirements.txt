@@ -1,4 +1,4 @@
 streamlit
-requests
-pathlib
-base64
+#requests
+#pathlib
+#base64
