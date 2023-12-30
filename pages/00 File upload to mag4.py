@@ -65,6 +65,8 @@ file_uploader_enable_parameter=False
 
 # File uploader widget
 uploaded_file = st.file_uploader('', type=["csv", "xlsx"], label_visibility='collapsed', disabled=file_uploader_enable_parameter)
+metadata_json_file_name = uploaded_file.name.split('.')[0]
+st.write(metadata_json_file_name+'.json')
 
 if uploaded_file is not None:
     # Save the uploaded file to the server in the uploads folder
@@ -97,7 +99,7 @@ if uploaded_file is not None:
     }
 
     #Writing the json file
-    file_path_json_metadata = Path("uploads") / 'test'+'.json'
+    file_path_json_metadata = Path("uploads") / metadata_json_file_name
     st.write(file_path_json_metadata)
 
     with open(file_path_json_metadata, "w") as f:
