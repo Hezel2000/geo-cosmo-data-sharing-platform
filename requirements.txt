@@ -1,6 +1,7 @@
 streamlit
 requests
 pandas
+datetime
 
 # The following are not required, as these are std python libraries, and therefore already available
 #pathlib
