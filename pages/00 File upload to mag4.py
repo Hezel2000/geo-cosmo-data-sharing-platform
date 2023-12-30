@@ -34,7 +34,7 @@ def upload_to_github(file_path, commit_message, file_type):
         with open(file_path, "r") as file:
             file_content = file.read()
             base64_bytes = base64.b64encode(file_content.encode('utf-8'))
-            base64_string = json_base64_bytes.decode('utf-8')
+            base64_string = base64_bytes.decode('utf-8')
     else:
         return st.write('Something is wrong with the filetype')
     
