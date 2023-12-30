@@ -102,7 +102,7 @@ if uploaded_file is not None:
     }
 
     #Writing the json file
-    file_path_json_metadata = 'metadata.json'
+    file_path_json_metadata = Path("uploads") / 'metadata.json'
 
     with open(file_path_json_metadata, "w") as f:
         json.dump(json_metadata, f)
@@ -116,7 +116,6 @@ if uploaded_file is not None:
 
         if response.status_code == 201:
             st.success(f"Dataset file was uploaded to GitHub successfully!")
-            #st.write(response.text.content.name)
         else:
             st.error(f"Error uploading file to GitHub. Status Code: {response.status_code}, Response: {response.text}")
 
@@ -124,6 +123,5 @@ if uploaded_file is not None:
 
         if response.status_code == 201:
             st.success(f"Metadata file was uploaded to GitHub successfully!")
-            #st.write(response.text.content.name)
         else:
             st.error(f"Error uploading file to GitHub. Status Code: {response.status_code}, Response: {response.text}")
