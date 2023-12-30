@@ -62,7 +62,7 @@ st.title("File Upload to the mag4 Database")
 st.header('Choose file to upload')
 
 # Depends on whether a user is logged in to Orcid -> False when logged in
-file_uploader_enable_parameter=False
+file_uploader_enable_parameter=True
 
 # File uploader widget
 uploaded_file = st.file_uploader('', type=["csv", "xlsx"], label_visibility='collapsed', disabled=file_uploader_enable_parameter)
@@ -70,7 +70,7 @@ uploaded_file = st.file_uploader('', type=["csv", "xlsx"], label_visibility='col
 if uploaded_file is not None:
     # Save the uploaded file to the server in the uploads folder
     file_path_user_dataset = Path("uploads") / uploaded_file.name
-    st.write(file_path_user_dataset)
+    #st.write(file_path_user_dataset)
     with open(file_path_user_dataset, "wb") as f:
         f.write(uploaded_file.getbuffer())
     #st.success(f"File saved to {file_path}")
@@ -100,7 +100,7 @@ if uploaded_file is not None:
     #Writing the json file
     metadata_json_file_name = uploaded_file.name.split('.')[0]+'.json'
     file_path_json_metadata = Path("uploads") / metadata_json_file_name
-    st.write(file_path_json_metadata)
+    #st.write(file_path_json_metadata)
 
     with open(file_path_json_metadata, "w") as f:
         json.dump(json_metadata, f)
