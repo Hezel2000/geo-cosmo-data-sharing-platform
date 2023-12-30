@@ -1,14 +1,10 @@
 
 import streamlit as st
 import requests
+import json
 from pathlib import Path
-import base64 
-
-#base_url = 'https://raw.githubusercontent.com/Hezel2000/cosmogeochemdata/master/'
-
-st.title('Will soon become functional again')
-
-#st.stop()
+import base64
+import pandas as pd
 
 def upload_to_github(file_path, commit_message):
     repo_owner = "Hezel2000"
@@ -32,10 +28,7 @@ def upload_to_github(file_path, commit_message):
         file_content = file.read()
         base64_bytes = base64.b64encode(file_content) 
         base64_string = base64_bytes.decode("utf-8")
-    # sample_string = "GeeksForGeeks is the best"
-    # sample_string_bytes = sample_string.encode("ascii") 
-    # print(f"Encoded string: {base64_string}") 
-
+    
     # Create a new commit with the updated file
     commit_data = {
         "message": commit_message,
@@ -54,23 +47,55 @@ def upload_to_github(file_path, commit_message):
 
     return response
 
-st.title("GitHub File Uploader")
+
+st.title("File Upload to the mag4 Database")
+st.header('Choose file to upload')
+
+# Depends on whether a user is logged in to Orcid -> False when logged in
+file_uploader_enable_parameter=True
 
 # File uploader widget
-uploaded_file = st.file_uploader("Choose a file", type=["txt", "csv", "xlsx"])
+uploaded_file = st.file_uploader('', type=["csv", "xlsx"], label_visibility='collapsed', disabled=file_uploader_enable_parameter)
 
 if uploaded_file is not None:
-    st.write("File uploaded successfully!")
+    #st.write("File uploaded successfully!")
 
     # Save the uploaded file to the server in the uploads folder
     file_path = Path("uploads") / uploaded_file.name
     with open(file_path, "wb") as f:
         f.write(uploaded_file.getbuffer())
+    #st.success(f"File saved to {file_path}")
 
-    st.success(f"File saved to {file_path}")
+
+    st.header('Metadata')
+
+    # Metadata
+    st.subheader('Mandatory')
+    commit_message = 'to be replaced with ->' #uploader_orcid
+    meta_name = st.text_input('Name', value=None, placeholder='Dominik Hezel')
+
+    st.subheader('Optional')
+    meta_source = st.text_input('Source', value=None, placeholder='Karlsruhe Institute of Technologie Chart of Nuclides', help='test')
+    meta_references = st.text_input('Reference(s) (comma separated if more than one)', value=None, placeholder='10.1016/j.chemer.2017.05.003, 10.2138/gselements.16.1.73', help='as dois only. A doi is a **d**igital **o**bject **i**dentifier that is almost always provided with a publication or other digital object such as a database.')
+
+    st.subheader('Preview')
+    json_metadata = {
+        "ORCID": "to be replaced with -> #uploader_orcid",
+        "Name": meta_name if meta_name is not None else 'still required',
+        "Source": meta_source if meta_source is not None else None,
+        "References": meta_references if meta_references is not None else None
+    }
+
+    #Writing the json file
+    json_metadata_file_path = 'metadata.json'
+
+    with open(json_metadata_file_path, "w") as f:
+        json.dump(json_metadata, f)
+
+    st.write(pd.read_json(json_metadata_file_path, typ="series"))
+
 
     # Commit and push changes to GitHub
-    commit_message = st.text_input("Enter commit message:")
     if st.button("Upload to GitHub"):
         response = upload_to_github(file_path, commit_message)
 
