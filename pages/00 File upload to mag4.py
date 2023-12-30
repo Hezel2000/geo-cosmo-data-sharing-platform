@@ -11,7 +11,12 @@ def upload_to_github(file_path, commit_message, file_type):
     repo_owner = "Hezel2000"
     repo_name = "GeoCosmoChemDataAndTools"
     branch_name = "main"
-    file_name = file_path.name
+    if file_type == 'csv':
+        file_name = file_path.name
+    elif file_type == 'json':
+        file_name == file_path
+    else:
+        st.write('Something is wrong with the file_path.')
 
     # Get the content of the existing file on GitHub
     github_api_url = f"https://api.github.com/repos/{repo_owner}/{repo_name}/contents/{file_name}"
@@ -110,7 +115,7 @@ if uploaded_file is not None:
         response = upload_to_github(file_path_user_dataset, commit_message, 'csv')
 
         if response.status_code == 201:
-            st.success(f"File was was uploaded to GitHub successfully!")
+            st.success(f"Dataset file was uploaded to GitHub successfully!")
             #st.write(response.text.content.name)
         else:
             st.error(f"Error uploading file to GitHub. Status Code: {response.status_code}, Response: {response.text}")
@@ -118,7 +123,7 @@ if uploaded_file is not None:
         response = upload_to_github(file_path_json_metadata, commit_message, 'json')
 
         if response.status_code == 201:
-            st.success(f"File was was uploaded to GitHub successfully!")
+            st.success(f"Metadata file was uploaded to GitHub successfully!")
             #st.write(response.text.content.name)
         else:
             st.error(f"Error uploading file to GitHub. Status Code: {response.status_code}, Response: {response.text}")
