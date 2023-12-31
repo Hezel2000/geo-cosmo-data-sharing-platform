@@ -8,8 +8,7 @@ st.title('Browse Datasets')
 #github_token = st.secrets["GitHub_Token"]
 #headers = {'Authorization': f'Bearer {github_token}'}
 #response = requests.get(api_url, headers=headers)
-
-st.write(response.status_code)
+#st.write(response.status_code)
 
 def get_github_folder_contents(username, repository, path, branch='main'):
     api_url = f'https://api.github.com/repos/{username}/{repository}/contents/{path}?ref={branch}'
