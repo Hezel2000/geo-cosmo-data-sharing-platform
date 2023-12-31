@@ -4,6 +4,12 @@ import pandas as pd
 
 st.title('Browse Datasets')
 
+api_url = f'https://api.github.com/repos/Hezel2000/GeoCosmoChemDataAndTools/contents/csv?ref=main'
+
+response = requests.get(api_url)
+
+st.write(response.status_code)
+
 def get_github_folder_contents(username, repository, path, branch='main'):
     api_url = f'https://api.github.com/repos/{username}/{repository}/contents/{path}?ref={branch}'
     
