@@ -13,8 +13,7 @@ def get_github_folder_contents(username, repository, path, branch='main'):
         contents = response.json()
         return contents
     else:
-        print(f"Failed to retrieve contents. Status code: {response.status_code}")
-        return None
+        return st.write(f"Failed to retrieve contents. Status code: {response.status_code}")
 
 # Replace these with your GitHub username, repository name, and folder path
 username = 'Hezel2000'
@@ -22,7 +21,9 @@ repository = 'GeoCosmoChemDataAndTools'
 folder_path = 'csv'
 
 contents = get_github_folder_contents(username, repository, folder_path)
+st.write(username)
 st.write(contents)
+
 if contents:
     dataset_name_list = []
     dataset_download_urls = []
