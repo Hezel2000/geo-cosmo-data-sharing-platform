@@ -96,7 +96,7 @@ if uploaded_file is not None:
 # ---------- Metadata Preview
     st.subheader('Preview')
     json_metadata = {
-        # type, comments, keywords
+        # type, comments, keywords, available app, jupyter notebook
         "ORCID": "automatically filled with -> #uploader_orcid",
         "Title": meta_title if meta_title is not None else None,
         "Short Title": meta_short_title if meta_short_title is not None else None,
