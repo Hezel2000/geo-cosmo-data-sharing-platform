@@ -33,6 +33,8 @@ if contents:
             dataset_name_list.append(item['name'].split('.')[0])
             dataset_download_urls.append(item['download_url'])
 
+st.write(dataset_download_urls)
+
 sel_dataset = st.selectbox('Select Dataset', dataset_name_list)
 
 st.dataframe(pd.read_csv(dataset_download_urls[dataset_name_list.index(sel_dataset)]))
