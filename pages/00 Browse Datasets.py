@@ -1,10 +1,8 @@
 import streamlit as st
+import requests
 import pandas as pd
 
 st.title('Browse Datasets')
-
-
-import requests
 
 def get_github_folder_contents(username, repository, path, branch='main'):
     api_url = f'https://api.github.com/repos/{username}/{repository}/contents/{path}?ref={branch}'
@@ -24,7 +22,7 @@ repository = 'GeoCosmoChemDataAndTools'
 folder_path = 'csv'
 
 contents = get_github_folder_contents(username, repository, folder_path)
-
+st.write(contents)
 if contents:
     dataset_name_list = []
     dataset_download_urls = []
@@ -38,3 +36,6 @@ st.write(dataset_download_urls)
 sel_dataset = st.selectbox('Select Dataset', dataset_name_list)
 
 st.dataframe(pd.read_csv(dataset_download_urls[dataset_name_list.index(sel_dataset)]))
+
+
+#test Browse Datasets
