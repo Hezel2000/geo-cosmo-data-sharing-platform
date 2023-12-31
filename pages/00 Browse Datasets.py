@@ -4,18 +4,18 @@ import pandas as pd
 
 st.title('Browse Datasets')
 
-import requests
-api_url = f'https://api.github.com/repos/Hezel2000/GeoCosmoChemDataAndTools/contents/csv?ref=main'
-github_token = st.secrets["GitHub_Token"]
-headers = {'Authorization': f'Bearer {github_token}'}
-response = requests.get(api_url, headers=headers)
+#api_url = f'https://api.github.com/repos/Hezel2000/GeoCosmoChemDataAndTools/contents/csv?ref=main'
+#github_token = st.secrets["GitHub_Token"]
+#headers = {'Authorization': f'Bearer {github_token}'}
+#response = requests.get(api_url, headers=headers)
 
 st.write(response.status_code)
 
 def get_github_folder_contents(username, repository, path, branch='main'):
     api_url = f'https://api.github.com/repos/{username}/{repository}/contents/{path}?ref={branch}'
-    
-    response = requests.get(api_url)
+    github_token = st.secrets['GitHub_Token']
+    headers = {"Authorization": f"Bearer {github_token}"}
+    response = requests.get(api_url, headers=headers)
     
     if response.status_code == 200:
         contents = response.json()
@@ -47,4 +47,4 @@ sel_dataset = st.selectbox('Select Dataset', dataset_name_list)
 st.dataframe(pd.read_csv(dataset_download_urls[dataset_name_list.index(sel_dataset)]))
 
 
-# test Browse Datasets
+# 
