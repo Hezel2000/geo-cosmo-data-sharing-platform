@@ -2,6 +2,7 @@ streamlit
 requests
 pandas
 datetime
+oauthlib
 requests-oauthlib
 
 # The following are not required, as these are std python libraries, and therefore already available
