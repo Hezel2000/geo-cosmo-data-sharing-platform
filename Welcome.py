@@ -17,8 +17,8 @@ st.write('Orcid Auth')
 #pip install oauthlib requests
 
 # Your Orcid credentials
-CLIENT_ID = "your_orcid_client_id"
-CLIENT_SECRET = "your_orcid_client_secret"
+CLIENT_ID = st.secrets["Orcid_User"] # "your_orcid_client_id"
+CLIENT_SECRET = st.secrets["Orcid_PW"] # "your_orcid_client_secret"
 ORCID_API_URL = "https://pub.orcid.org/v3.0/"
 
 # Function to get Orcid token
