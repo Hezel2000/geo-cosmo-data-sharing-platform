@@ -8,8 +8,8 @@ from requests_oauthlib import OAuth2Session
 # pip install oauthlib requests
 
 # Your Orcid credentials
-CLIENT_ID = st.secret["Orcid_ID"]
-CLIENT_SECRET = st.secret["Orcid_Secret"]
+CLIENT_ID = st.secrets["Orcid_ID"]
+CLIENT_SECRET = st.secrets["Orcid_Secret"]
 ORCID_API_URL = "https://pub.orcid.org/v3.0/"
 REDIRECT_URI = "https://geo-cosmo-data-sharing-platform-bvniuih82j6l2aeq3jxfyb.streamlit.app/"  # Update with your actual redirect URI
 
