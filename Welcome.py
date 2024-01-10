@@ -3,6 +3,8 @@ from requests.auth import HTTPBasicAuth
 from oauthlib.oauth2 import WebApplicationClient
 from requests_oauthlib import OAuth2Session
 
+authorization_response = None
+
 # Orcid Auth
 # Install this package
 # pip install oauthlib requests
