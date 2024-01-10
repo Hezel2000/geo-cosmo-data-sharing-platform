@@ -11,7 +11,7 @@ from requests_oauthlib import OAuth2Session
 CLIENT_ID = "your_orcid_client_id"
 CLIENT_SECRET = "your_orcid_client_secret"
 ORCID_API_URL = "https://pub.orcid.org/v3.0/"
-REDIRECT_URI = "http://localhost:8501/oauth/callback"  # Update with your actual redirect URI
+REDIRECT_URI = "https://geo-cosmo-data-sharing-platform-bvniuih82j6l2aeq3jxfyb.streamlit.app" #/oauth/callback"  # Update with your actual redirect URI
 
 # Function to get Orcid authorization URL
 def get_orcid_authorization_url():
