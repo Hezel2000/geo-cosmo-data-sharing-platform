@@ -4,6 +4,7 @@ from oauthlib.oauth2 import WebApplicationClient
 from requests_oauthlib import OAuth2Session
 
 authorization_response = None
+token = None
 
 # Orcid Auth
 # Install this package
