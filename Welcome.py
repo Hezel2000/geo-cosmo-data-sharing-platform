@@ -23,7 +23,8 @@ def get_orcid_authorization_url():
     client = WebApplicationClient(client_id=CLIENT_ID)
     oauth = OAuth2Session(client=client, redirect_uri=REDIRECT_URI, scope=["openid", "profile", "email", "orcid"])
     authorization_url, state = oauth.authorization_url("https://orcid.org/oauth/authorize")
-    return REDIRECT_URI
+    return authorization_url
+    #return REDIRECT_URI
 
 # Function to get Orcid token
 def get_orcid_token(authorization_response):
