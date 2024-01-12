@@ -7,8 +7,7 @@ import requests
 CLIENT_ID = st.secrets["Orcid_ID"]
 CLIENT_SECRET = st.secrets["Orcid_Secret"]
 ORCID_API_URL = "https://pub.orcid.org/v3.0/"
-REDIRECT_URI = "https://mag4-data-sharing-platform.streamlit.app"
-#REDIRECT_URI = "https://geo-cosmo-data-sharing-platform-bvniuih82j6l2aeq3jxfyb.streamlit.app/"
+REDIRECT_URI = "https://geo-cosmo-data-sharing-platform-bvniuih82j6l2aeq3jxfyb.streamlit.app/"
 
 # Streamlit app
 st.title("Streamlit Orcid Authentication")
