@@ -15,6 +15,7 @@ st.write('test')
 
 # Check if the user is authenticated
 is_authenticated = st.session_state.get("is_authenticated", False)
+st.write(is_authenticated)
 
 if not is_authenticated:
     # Orcid login button
