@@ -54,7 +54,7 @@ if not is_authenticated:
                 st.write(f"Response Content: {response.content}")
 
 # Display user info if authenticated or success flag is present in the URL
-if is_authenticated or st.experimental_get_query_params().get("success") == "true" or 1==1:
+if is_authenticated or st.experimental_get_query_params().get("success"):
     st.sidebar.info("You are logged in with Orcid.")
 
     # Display success message
