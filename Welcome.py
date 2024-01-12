@@ -41,7 +41,7 @@ if not is_authenticated:
             if response.status_code == 200:
                 # Token successfully obtained
                 token_info = response.json()
-                st.session_state.is_authenticated = True
+                is_authenticated = True
                 st.session_state.orcid_token = token_info
 
                 # Redirect to the main app with a success flag in the URL
