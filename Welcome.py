@@ -14,8 +14,7 @@ st.title("Streamlit Orcid Authentication")
 st.write('test')
 
 # Check if the user is authenticated
-is_authenticated = st.session_state.get("is_authenticated", True)
-st.write(is_authenticated)
+is_authenticated = st.session_state.get("is_authenticated", False)
 
 if not is_authenticated:
     # Orcid login button
