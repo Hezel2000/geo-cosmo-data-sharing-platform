@@ -84,4 +84,4 @@ if st.session_state.is_authenticated:
     # Your existing Streamlit content goes here
     st.title('Your uploaded files')
     st.write('A simply filtered table with your uploaded datasets, with a number of editing options: update, delete (restricted!)')
-    st.write(orcid_user_info)
+    st.write('orcid_user_info', orcid_user_info)
