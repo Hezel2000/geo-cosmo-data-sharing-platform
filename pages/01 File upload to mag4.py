@@ -5,7 +5,7 @@ import json
 from pathlib import Path
 import base64
 import pandas as pd
-from datetime import datetime
+from datetime import datetime    
 
 def upload_to_github(file_path, commit_message, file_type):
     repo_owner = "Hezel2000"
@@ -135,3 +135,9 @@ if uploaded_file is not None:
             st.success(f"Metadata file was successfully uploaded to GitHub.")
         else:
             st.error(f"Error uploading file to GitHub. Status Code: {response.status_code}, Response: {response.text}")
+
+
+if st.session_state.is_authenticated:
+    st.sidebar.success("You are logged in with ORCID")
+else:
+    st.sidebar.success("ORCID login required for full functionality")

@@ -34,3 +34,8 @@ if contents:
 sel_dataset = st.selectbox('Select Dataset', dataset_name_list)
 
 st.dataframe(pd.read_csv(dataset_download_urls[dataset_name_list.index(sel_dataset)]))
+
+if st.session_state.is_authenticated:
+    st.sidebar.success("You are logged in with ORCID")
+else:
+    st.sidebar.success("ORCID login required for full functionality")

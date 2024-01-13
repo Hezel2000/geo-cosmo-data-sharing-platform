@@ -76,7 +76,7 @@ if st.sidebar.button('Logout'):
 
 # Display user info if authenticated
 if st.session_state.is_authenticated:
-    st.sidebar.success("You are logged in with Orcid.")
+    st.sidebar.success("You are logged in with ORCID")
 
     # Display Orcid user info automatically
     orcid_user_info = get_orcid_user_info(st.session_state.orcid_token)
@@ -92,4 +92,4 @@ if st.session_state.is_authenticated:
     st.write('st.session_state.orcid_token',t.session_state.orcid_token)
 else:
     st.sidebar.info('not logged in')
-    st.sidebar.error('not logged in')
+    st.sidebar.error('You are not loged in to ORCID')
