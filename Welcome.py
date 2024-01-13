@@ -47,7 +47,7 @@ st.title("Streamlit Orcid Authentication")
 st.write('test 2')
 
 # Check if the user is authenticated
-st.session_state.is_authenticated = st.session_state.get("is_authenticated", False)
+st.session_state.is_authenticated = False #st.session_state.get("is_authenticated", False)
 
 if not st.session_state.is_authenticated:
     # Orcid login button
@@ -57,7 +57,7 @@ if not st.session_state.is_authenticated:
         st.write(f"Click [here]({authorization_url}) to log in with Orcid.")
 
         # Check if the authorization code is present in the URL
-        url = st.experimental_get_query_params()
+        url = st.query_params() #st.experimental_get_query_params()
         authorization_response = url.get("code", None)
 
         if authorization_response:
@@ -89,6 +89,7 @@ if st.session_state.is_authenticated:
     st.title('Your uploaded files')
     st.write('A simply filtered table with your uploaded datasets, with a number of editing options: update, delete (restricted!)')
     st.write('orcid_user_info', orcid_user_info)
+    st.write('st.session_state.orcid_token',t.session_state.orcid_token)
 else:
     st.sidebar.info('not logged in')
-    st.sidebar.warning('not logged in')
+    st.sidebar.error('not logged in')
