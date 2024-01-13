@@ -140,4 +140,4 @@ if uploaded_file is not None:
 if st.session_state.is_authenticated:
     st.sidebar.success("You are logged in with ORCID")
 else:
-    st.sidebar.success("ORCID login required for full functionality")
+    st.sidebar.error("ORCID login required for full functionality")

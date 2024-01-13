@@ -91,5 +91,4 @@ if st.session_state.is_authenticated:
     st.write('orcid_user_info', orcid_user_info)
     st.write('st.session_state.orcid_token',t.session_state.orcid_token)
 else:
-    st.sidebar.info('not logged in')
     st.sidebar.error('You are not loged in to ORCID')
