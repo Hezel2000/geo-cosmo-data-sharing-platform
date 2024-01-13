@@ -65,9 +65,9 @@ st.header('Choose file to upload')
 
 # Depends on whether a user is logged in to Orcid -> False when logged in
 if st.session_state.is_authenticated:
-    file_uploader_enable_parameter=True
+    file_uploader_enable_parameter=Flase
 else:
-    file_uploader_enable_parameter=False
+    file_uploader_enable_parameter=True
 
 # File uploader widget
 uploaded_file = st.file_uploader('', type=["csv", "xlsx"], label_visibility='collapsed', disabled=file_uploader_enable_parameter)
