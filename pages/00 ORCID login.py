@@ -37,11 +37,12 @@ def get_orcid_user_info(orcid_token):
     if response.status_code == 200:
         user_info = response.json()
         return {
+            "response": response.status_code,
             "name": user_info.get("name", {}).get("given-names", {}).get("value", ""),
             "orcid": user_info.get("orcid-identifier", {}).get("path", ""),
         }
     else:
-        return response.status_code
+        return st.error('info response error')
 
 # Streamlit app
 st.title("ORCID Authentication")
@@ -79,6 +80,7 @@ if st.session_state.is_authenticated:
     #orcid_user_info = get_orcid_user_info(st.session_state.orcid_token)
     #if orcid_user_info:
     st.write("Orcid User Information:")
+    st.write(f"response: {orcid_user_info['response']}")
     st.write(f"Name: {orcid_user_info['name']}")
     st.write(f"Orcid ID: {orcid_user_info['orcid']}")
 
