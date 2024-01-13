@@ -37,7 +37,6 @@ def get_orcid_user_info(orcid_token):
     if response.status_code == 200:
         user_info = response.json()
         return {
-            "response": response.status_code,
             "name": user_info.get("name", {}).get("given-names", {}).get("value", ""),
             "orcid": user_info.get("orcid-identifier", {}).get("path", ""),
         }
@@ -68,7 +67,6 @@ if not st.session_state.is_authenticated:
             if orcid_token:
                 st.session_state.is_authenticated = True
                 st.session_state.orcid_token = orcid_token
-                orcid_user_info = get_orcid_user_info(orcid_token)
                 st.success("Successfully logged in with Orcid!")
 
 
@@ -77,12 +75,11 @@ if st.session_state.is_authenticated:
     st.sidebar.success("You are logged in with ORCID")
 
     # Display Orcid user info automatically
-    #orcid_user_info = get_orcid_user_info(st.session_state.orcid_token)
-    #if orcid_user_info:
-    st.write("Orcid User Information:")
-    st.write(f"response: {orcid_user_info['response']}")
-    st.write(f"Name: {orcid_user_info['name']}")
-    st.write(f"Orcid ID: {orcid_user_info['orcid']}")
+    orcid_user_info = get_orcid_user_info(st.session_state.orcid_token)
+    if orcid_user_info:
+        st.write("Orcid User Information:")
+        st.write(f"Name: {orcid_user_info['name']}")
+        st.write(f"Orcid ID: {orcid_user_info['orcid']}")
 
     # Your existing Streamlit content goes here
     st.title('Your uploaded files')
