@@ -69,10 +69,13 @@ if not st.session_state.is_authenticated:
                 st.session_state.orcid_token = orcid_token
                 st.success("Successfully logged in with Orcid!")
 
+
 # Display user info if authenticated
 if st.session_state.is_authenticated:
     st.sidebar.success("You are logged in with Orcid.")
-    st.sidebar.button('Logout', on_click)
+    if st.sidebar.button('Logout'):
+        st.session_state.is_authenticated = False
+
 
     # Display Orcid user info automatically
     orcid_user_info = get_orcid_user_info(st.session_state.orcid_token)
