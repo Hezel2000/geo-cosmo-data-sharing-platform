@@ -64,7 +64,10 @@ st.title("File Upload to the mag4 Database")
 st.header('Choose file to upload')
 
 # Depends on whether a user is logged in to Orcid -> False when logged in
-file_uploader_enable_parameter=True
+if is_authenticated:
+    file_uploader_enable_parameter=True
+else:
+    file_uploader_enable_parameter=False
 
 # File uploader widget
 uploaded_file = st.file_uploader('', type=["csv", "xlsx"], label_visibility='collapsed', disabled=file_uploader_enable_parameter)

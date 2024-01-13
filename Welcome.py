@@ -71,7 +71,7 @@ if not is_authenticated:
 
 # Display user info if authenticated
 if is_authenticated:
-    st.sidebar.info("You are logged in with Orcid.")
+    st.sidebar.success("You are logged in with Orcid.")
 
     # Display Orcid user info automatically
     orcid_user_info = get_orcid_user_info(st.session_state.orcid_token)
