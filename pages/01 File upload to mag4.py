@@ -64,7 +64,7 @@ st.title("File Upload to the mag4 Database")
 st.header('Choose file to upload')
 
 # Depends on whether a user is logged in to Orcid -> False when logged in
-if is_authenticated:
+if st.session_state.is_authenticated:
     file_uploader_enable_parameter=True
 else:
     file_uploader_enable_parameter=False

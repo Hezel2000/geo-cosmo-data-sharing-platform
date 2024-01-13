@@ -47,9 +47,9 @@ st.title("Streamlit Orcid Authentication")
 st.write('test 2')
 
 # Check if the user is authenticated
-is_authenticated = st.session_state.get("is_authenticated", False)
+st.session_state.is_authenticated = st.session_state.get("is_authenticated", False)
 
-if not is_authenticated:
+if not st.session_state.is_authenticated:
     # Orcid login button
     if st.button("Login with Orcid"):
         # Redirect user to Orcid for authorization
@@ -65,12 +65,12 @@ if not is_authenticated:
             orcid_token = get_orcid_token(authorization_response)
 
             if orcid_token:
-                is_authenticated = True
+                st.session_state.is_authenticated = True
                 st.session_state.orcid_token = orcid_token
                 st.success("Successfully logged in with Orcid!")
 
 # Display user info if authenticated
-if is_authenticated:
+if st.session_state.is_authenticated:
     st.sidebar.success("You are logged in with Orcid.")
 
     # Display Orcid user info automatically
