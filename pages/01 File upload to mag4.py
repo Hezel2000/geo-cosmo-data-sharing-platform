@@ -65,7 +65,7 @@ st.header('Choose file to upload')
 
 # Depends on whether a user is logged in to Orcid -> False when logged in
 if st.session_state.is_authenticated:
-    file_uploader_enable_parameter=Flase
+    file_uploader_enable_parameter=False
 else:
     file_uploader_enable_parameter=True
 
