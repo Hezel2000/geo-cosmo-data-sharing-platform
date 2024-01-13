@@ -43,6 +43,7 @@ def get_orcid_user_info(orcid_token):
 
 # Streamlit app
 st.title("Streamlit Orcid Authentication")
+st.write('test 2')
 
 # Check if the user is authenticated
 is_authenticated = st.session_state.get("is_authenticated", False)
