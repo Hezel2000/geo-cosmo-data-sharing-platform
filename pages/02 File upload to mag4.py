@@ -133,7 +133,7 @@ if uploaded_file is not None:
 
 
 # ---------- Commit and push changes to GitHub
-    if meta_orcid == 'still required' or meta_email == 'still required' or meta_title == 'still required' or meta_short_title =='still required' or meta_keywords == 'still required' or meta_description == 'still required' or meta_type == 'still required' or meta_usage_licence == 'still required'
+    if meta_orcid == 'still required' or meta_email == 'still required' or meta_title == 'still required' or meta_short_title =='still required' or meta_keywords == 'still required' or meta_description == 'still required' or meta_type == 'still required' or meta_usage_licence == 'still required':
         st.write('All required metadata need to be added (with sensible information).')
     else:
         if st.button("Upload to mag4"):
