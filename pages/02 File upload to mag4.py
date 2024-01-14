@@ -98,7 +98,7 @@ if uploaded_file is not None:
     st.subheader('Optional')
     meta_available_app = st.text_input('Available App', value=None, placeholder='app url (comma separated if more than one)', help='If you build an app around this dataset, you cann add the link to this app here. Information how to quickly build insight- and/or powerful apps around your dataset can be found on the navigation bar.')
     meta_creation_date = st.date_input('Date when dataset was created', value=None)
-    meta_source = st.text_input('Source', value=None, placeholder='Karlsruhe Institute of Technologie Chart of Nuclides', help='Add the source as name, weblink, ... so the origin of the dataset can be traced back, if it is not yours.')
+    meta_source = st.text_input('Source', value=None, placeholder='Karlsruhe Institute of Technology Chart of Nuclides', help='Add the source as name, weblink, ... so the origin of the dataset can be traced back, if it is not yours.')
     meta_references = st.text_input('Reference(s) (comma separated if more than one)', value=None, placeholder='10.1016/j.chemer.2017.05.003, 10.2138/gselements.16.1.73', help='as dois only. A doi is a **d**igital **o**bject **i**dentifier that is almost always provided with a publication or other digital object such as a database.')
     meta_comments = st.text_input('Comment(s)', value=None, placeholder='everything not coverd above')
 
@@ -133,19 +133,21 @@ if uploaded_file is not None:
 
 
 # ---------- Commit and push changes to GitHub
-    
-    if st.button("Upload to GitHub"):
-        response = upload_to_github(file_path_user_dataset, meta_orcid, 'csv')
-        if response.status_code == 201:
-            st.success(f"Dataset file was successfully uploaded to GitHub.")
-        else:
-            st.error(f"Error uploading file to GitHub. Status Code: {response.status_code}, Response: {response.text}")
+    if meta_orcid == 'still required' or meta_email == 'still required' or meta_title == 'still required' or meta_short_title =='still required' or meta_keywords == 'still required' or meta_description == 'still required' or meta_type == 'still required' or meta_usage_licence == 'still required'
+        st.write('All required metadata need to be added (with sensible information).')
+    else:
+        if st.button("Upload to mag4"):
+            response = upload_to_github(file_path_user_dataset, meta_orcid, 'csv')
+            if response.status_code == 201:
+                st.success(f"Dataset file was successfully uploaded to GitHub.")
+            else:
+                st.error(f"Error uploading file to GitHub. Status Code: {response.status_code}, Response: {response.text}")
 
-        response = upload_to_github(file_path_json_metadata, meta_orcid, 'json')
-        if response.status_code == 201:
-            st.success(f"Metadata file was successfully uploaded to GitHub.")
-        else:
-            st.error(f"Error uploading file to GitHub. Status Code: {response.status_code}, Response: {response.text}")
+            response = upload_to_github(file_path_json_metadata, meta_orcid, 'json')
+            if response.status_code == 201:
+                st.success(f"Metadata file was successfully uploaded to GitHub.")
+            else:
+                st.error(f"Error uploading file to GitHub. Status Code: {response.status_code}, Response: {response.text}")
 
 
 if st.session_state.is_authenticated:

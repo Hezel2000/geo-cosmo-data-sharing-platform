@@ -46,6 +46,11 @@ def get_orcid_user_info(orcid_token):
 # Streamlit app
 st.title("ORCID Authentication")
 
+st.write('Works as follows (for the moment:)')
+st.write('Click on the button, click on the link – then authenticate.')
+st.write('After the redirect to this page, click again on login – and you are all set.')
+st.write('This will become more streamlined in the future.')
+
 # Check if the user is authenticated
 st.session_state.is_authenticated = False #st.session_state.get("is_authenticated", False)
 
