@@ -134,20 +134,24 @@ if uploaded_file is not None:
 
 # ---------- Commit and push changes to GitHub
     if meta_orcid == 'still required' or meta_email == 'still required' or meta_title == 'still required' or meta_short_title =='still required' or meta_keywords == 'still required' or meta_description == 'still required' or meta_type == 'still required' or meta_usage_licence == 'still required':
+        all_metadata_added = False
         st.write('All required metadata need to be added (with sensible information).')
+        
     else:
-        if st.button("Upload to mag4"):
-            response = upload_to_github(file_path_user_dataset, meta_orcid, 'csv')
-            if response.status_code == 201:
-                st.success(f"Dataset file was successfully uploaded to GitHub.")
-            else:
-                st.error(f"Error uploading file to GitHub. Status Code: {response.status_code}, Response: {response.text}")
+        all_metadata_added = True
+        
+    if st.button("Upload to mag4", disabled=all_metadata_added):
+        response = upload_to_github(file_path_user_dataset, meta_orcid, 'csv')
+        if response.status_code == 201:
+            st.success(f"Dataset file was successfully uploaded to GitHub.")
+        else:
+            st.error(f"Error uploading file to GitHub. Status Code: {response.status_code}, Response: {response.text}")
 
-            response = upload_to_github(file_path_json_metadata, meta_orcid, 'json')
-            if response.status_code == 201:
-                st.success(f"Metadata file was successfully uploaded to GitHub.")
-            else:
-                st.error(f"Error uploading file to GitHub. Status Code: {response.status_code}, Response: {response.text}")
+        response = upload_to_github(file_path_json_metadata, meta_orcid, 'json')
+        if response.status_code == 201:
+            st.success(f"Metadata file was successfully uploaded to GitHub.")
+        else:
+            st.error(f"Error uploading file to GitHub. Status Code: {response.status_code}, Response: {response.text}")
 
 
 if st.session_state.is_authenticated:
