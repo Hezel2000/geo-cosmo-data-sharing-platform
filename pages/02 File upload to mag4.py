@@ -7,7 +7,7 @@ import base64
 import pandas as pd
 from datetime import datetime    
 
-#st.session_state.is_authenticated=True
+st.session_state.is_authenticated=True
 
 def upload_to_github(file_path, commit_message, file_type):
     repo_owner = "Hezel2000"
@@ -72,7 +72,7 @@ else:
     file_uploader_enable_parameter=True
 
 # File uploader widget
-uploaded_file = st.file_uploader('', type=["csv", "xlsx"], label_visibility='collapsed', disabled=file_uploader_enable_parameter)
+uploaded_file = st.file_uploader('', type=["csv"], label_visibility='collapsed', disabled=file_uploader_enable_parameter)
 
 if uploaded_file is not None:
     # Save the uploaded file to the server in the datasets folder
@@ -133,14 +133,13 @@ if uploaded_file is not None:
 
 
 # ---------- Commit and push changes to GitHub
-    if meta_orcid == 'still required' or meta_email == 'still required' or meta_title == 'still required' or meta_short_title =='still required' or meta_keywords == 'still required' or meta_description == 'still required' or meta_type == 'still required' or meta_usage_licence == 'still required':
-        all_metadata_added = False
+    if meta_orcid == None or meta_email == None or meta_title == None or meta_short_title == None or meta_keywords == None or meta_description == None or meta_type == None or meta_usage_licence == None:
+        st.session_state.all_metadata_added = True
         st.write('All required metadata need to be added (with sensible information).')
-        
     else:
-        all_metadata_added = True
-        
-    if st.button("Upload to mag4", disabled=all_metadata_added):
+        st.session_state.all_metadata_added = False
+
+    if st.button("Upload to mag4", disabled=st.session_state.all_metadata_added):
         response = upload_to_github(file_path_user_dataset, meta_orcid, 'csv')
         if response.status_code == 201:
             st.success(f"Dataset file was successfully uploaded to GitHub.")
