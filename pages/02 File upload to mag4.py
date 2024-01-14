@@ -132,20 +132,20 @@ if uploaded_file is not None:
     st.write(pd.read_json(file_path_json_metadata, typ="series"))
 
 
-# # ---------- Commit and push changes to GitHub
+# ---------- Commit and push changes to GitHub
     
-#     if st.button("Upload to GitHub"):
-#         response = upload_to_github(file_path_user_dataset, meta_orcid, 'csv')
-#         if response.status_code == 201:
-#             st.success(f"Dataset file was successfully uploaded to GitHub.")
-#         else:
-#             st.error(f"Error uploading file to GitHub. Status Code: {response.status_code}, Response: {response.text}")
+    if st.button("Upload to GitHub"):
+        response = upload_to_github(file_path_user_dataset, meta_orcid, 'csv')
+        if response.status_code == 201:
+            st.success(f"Dataset file was successfully uploaded to GitHub.")
+        else:
+            st.error(f"Error uploading file to GitHub. Status Code: {response.status_code}, Response: {response.text}")
 
-#         response = upload_to_github(file_path_json_metadata, meta_orcid, 'json')
-#         if response.status_code == 201:
-#             st.success(f"Metadata file was successfully uploaded to GitHub.")
-#         else:
-#             st.error(f"Error uploading file to GitHub. Status Code: {response.status_code}, Response: {response.text}")
+        response = upload_to_github(file_path_json_metadata, meta_orcid, 'json')
+        if response.status_code == 201:
+            st.success(f"Metadata file was successfully uploaded to GitHub.")
+        else:
+            st.error(f"Error uploading file to GitHub. Status Code: {response.status_code}, Response: {response.text}")
 
 
 if st.session_state.is_authenticated:
