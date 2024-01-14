@@ -7,6 +7,8 @@ import base64
 import pandas as pd
 from datetime import datetime    
 
+#st.session_state.is_authenticated=True
+
 def upload_to_github(file_path, commit_message, file_type):
     repo_owner = "Hezel2000"
     repo_name = "GeoCosmoChemDataAndTools"
@@ -73,8 +75,8 @@ else:
 uploaded_file = st.file_uploader('', type=["csv", "xlsx"], label_visibility='collapsed', disabled=file_uploader_enable_parameter)
 
 if uploaded_file is not None:
-    # Save the uploaded file to the server in the uploads folder
-    file_path_user_dataset = Path("uploads") / uploaded_file.name
+    # Save the uploaded file to the server in the datasets folder
+    file_path_user_dataset = Path("datasets") / uploaded_file.name
     #st.write(file_path_user_dataset)
     with open(file_path_user_dataset, "wb") as f:
         f.write(uploaded_file.getbuffer())
@@ -83,36 +85,45 @@ if uploaded_file is not None:
 
 # ---------- Metadata Fields
     st.header('Metadata')
-    
     st.subheader('Mandatory')
     meta_orcid = 'to be replaced with ->' #uploader_orcid
+    meta_email = st.text_input('Email address', value=None, placeholder='Email addressyour email address')
     meta_title = st.text_input('Title', value=None, placeholder='Electron Transition Energies')
     meta_short_title = st.text_input('Short Title', value=None, placeholder='electransener')
+    meta_keywords = st.text_input('Keywords (comma separted if more than one – which would be helpful)', value=None, placeholder='eV, absorption, edge, binding, x-ray', help='These are used in the search function. No need to repeat words that are already in the title or description.')
     meta_description = st.text_input('Description', value=None, placeholder='IMA–CNMNC approved mineral symbols')
-    meta_usage_licence = st.selectbox('Licence how the uploaded dataset can be used.', ('CCO', 'CC-BY', 'CC-BY SA'), help='cf. https://creativecommons.org/share-your-work/cclicenses/')
+    meta_type = st.selectbox('Type of dataset', ('basic', 'standard','example', 'other'), help='basic: e.g., element masses, element-oxide conversion factors, decay constants; standard: composition of (a) reference material(s); example: to be used for testing or education;  other: anything else – please indicate in the comments why you chose other')
+    meta_usage_licence = st.selectbox('Licence how the uploaded dataset can be used', ('CCO', 'CC-BY', 'CC-BY SA'), help='cf. https://creativecommons.org/share-your-work/cclicenses/')
 
     st.subheader('Optional')
+    meta_available_app = st.text_input('Available App', value=None, placeholder='app url (comma separated if more than one)', help='If you build an app around this dataset, you cann add the link to this app here. Information how to quickly build insight- and/or powerful apps around your dataset can be found on the navigation bar.')
     meta_creation_date = st.date_input('Date when dataset was created', value=None)
     meta_source = st.text_input('Source', value=None, placeholder='Karlsruhe Institute of Technologie Chart of Nuclides', help='Add the source as name, weblink, ... so the origin of the dataset can be traced back, if it is not yours.')
     meta_references = st.text_input('Reference(s) (comma separated if more than one)', value=None, placeholder='10.1016/j.chemer.2017.05.003, 10.2138/gselements.16.1.73', help='as dois only. A doi is a **d**igital **o**bject **i**dentifier that is almost always provided with a publication or other digital object such as a database.')
+    meta_comments = st.text_input('Comment(s)', value=None, placeholder='everything not coverd above')
+
 
 # ---------- Metadata Preview
     st.subheader('Preview')
     json_metadata = {
-        # type, comments, keywords, available app, jupyter notebook
+        # , jupyter notebook
         "ORCID": "automatically filled with -> #uploader_orcid",
-        "Title": meta_title if meta_title is not None else None,
-        "Short Title": meta_short_title if meta_short_title is not None else None,
+        "Email": meta_email if meta_email is not None else 'still required',
+        "Title": meta_title if meta_title is not None else 'still required',
+        "Short Title": meta_short_title if meta_short_title is not None else 'still required',
+        "Description": meta_description if meta_description is not None else 'still required',
+        "Keywords":  meta_keywords if meta_keywords is not None else 'still required',
+        "Type": meta_type if meta_type is not None else 'still required',
         "Creation Date": meta_creation_date.strftime("%Y-%m-%d") if meta_creation_date is not None else None,
         "Upload Date": datetime.now().strftime("%Y-%m-%d"),
-        "Description": meta_description if meta_description is not None else 'still required',
         "Source": meta_source if meta_source is not None else None,
-        "References": meta_references if meta_references is not None else None
+        "References": meta_references if meta_references is not None else None,
+        "Comments": meta_comments if meta_comments is not None else None
     }
 
     #Writing the json file
     metadata_json_file_name = uploaded_file.name.split('.')[0]+'.json'
-    file_path_json_metadata = Path("uploads") / metadata_json_file_name
+    file_path_json_metadata = Path("datasets") / metadata_json_file_name
     #st.write(file_path_json_metadata)
 
     with open(file_path_json_metadata, "w") as f:
@@ -121,20 +132,20 @@ if uploaded_file is not None:
     st.write(pd.read_json(file_path_json_metadata, typ="series"))
 
 
-# ---------- Commit and push changes to GitHub
+# # ---------- Commit and push changes to GitHub
     
-    if st.button("Upload to GitHub"):
-        response = upload_to_github(file_path_user_dataset, meta_orcid, 'csv')
-        if response.status_code == 201:
-            st.success(f"Dataset file was successfully uploaded to GitHub.")
-        else:
-            st.error(f"Error uploading file to GitHub. Status Code: {response.status_code}, Response: {response.text}")
+#     if st.button("Upload to GitHub"):
+#         response = upload_to_github(file_path_user_dataset, meta_orcid, 'csv')
+#         if response.status_code == 201:
+#             st.success(f"Dataset file was successfully uploaded to GitHub.")
+#         else:
+#             st.error(f"Error uploading file to GitHub. Status Code: {response.status_code}, Response: {response.text}")
 
-        response = upload_to_github(file_path_json_metadata, meta_orcid, 'json')
-        if response.status_code == 201:
-            st.success(f"Metadata file was successfully uploaded to GitHub.")
-        else:
-            st.error(f"Error uploading file to GitHub. Status Code: {response.status_code}, Response: {response.text}")
+#         response = upload_to_github(file_path_json_metadata, meta_orcid, 'json')
+#         if response.status_code == 201:
+#             st.success(f"Metadata file was successfully uploaded to GitHub.")
+#         else:
+#             st.error(f"Error uploading file to GitHub. Status Code: {response.status_code}, Response: {response.text}")
 
 
 if st.session_state.is_authenticated:

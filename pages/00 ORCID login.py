@@ -41,7 +41,7 @@ def get_orcid_user_info(orcid_token):
             "orcid": user_info.get("orcid-identifier", {}).get("path", ""),
         }
     else:
-        return response.status_code #st.error('info response error')
+        return st.error('info response error')
 
 # Streamlit app
 st.title("ORCID Authentication")
@@ -51,7 +51,7 @@ st.session_state.is_authenticated = False #st.session_state.get("is_authenticate
 
 if not st.session_state.is_authenticated:
     # Orcid login button
-    if st.button("Login with Orcid"):
+    if st.button("Login with ORCID"):
         # Redirect user to Orcid for authorization
         authorization_url = f"https://orcid.org/oauth/authorize?client_id={CLIENT_ID}&response_type=code&scope=/authenticate&redirect_uri={REDIRECT_URI}"
         st.write(f"Click [here]({authorization_url}) to log in with Orcid.")
@@ -67,7 +67,7 @@ if not st.session_state.is_authenticated:
             if orcid_token:
                 st.session_state.is_authenticated = True
                 st.session_state.orcid_token = orcid_token
-                st.success("Successfully logged in with Orcid!")
+                st.success("Successfully logged in with ORCID")
 
 
 # Display user info if authenticated
@@ -76,8 +76,7 @@ if st.session_state.is_authenticated:
 
     # Display Orcid user info automatically
     orcid_user_info = get_orcid_user_info(st.session_state.orcid_token)
-    st.write(orcid_user_info)
-    st.write(get_orcid_user_info(st.session_state.orcid_token))
+    st.write('response.status_code', orcid_user_info)
     if orcid_user_info:
         st.write("Orcid User Information:")
         st.write(f"Name: {orcid_user_info['name']}")
