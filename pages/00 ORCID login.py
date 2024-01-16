@@ -70,9 +70,9 @@ if not st.session_state.is_authenticated:
 
         if authorization_response:
             # Get Orcid token
-            orcid_token = get_orcid_token(authorization_response)
+            st.session_state.orcid_token = get_orcid_token(authorization_response)
 
-            if orcid_token:
+            if st.session_state.orcid_token:
                 st.session_state.is_authenticated = True
                 st.session_state.orcid_token = orcid_token
                 st.success("Successfully logged in with ORCID")
