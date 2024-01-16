@@ -10,6 +10,7 @@ def get_orcid_user_info(orcid_token):
 
     headers = {"Authorization": f"Bearer {orcid_token}"}
     response = requests.get(ORCID_API_URL + "me", headers=headers)
+    return response
 
     if response.status_code == 200:
         user_info = response.json()
