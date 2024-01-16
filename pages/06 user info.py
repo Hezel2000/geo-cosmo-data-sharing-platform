@@ -29,8 +29,8 @@ if st.session_state.is_authenticated:
     st.write('response.status_code', orcid_user_info)
     if orcid_user_info:
         st.write("Orcid User Information:")
-        st.write(f"Name: {orcid_user_info['name']}")
-        st.write(f"Orcid ID: {orcid_user_info['orcid']}")
+        # st.write(f"Name: {orcid_user_info['name']}")
+        # st.write(f"Orcid ID: {orcid_user_info['orcid']}")
 
     # Your existing Streamlit content goes here
     st.title('Your uploaded files')
