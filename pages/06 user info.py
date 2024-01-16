@@ -1,7 +1,7 @@
 import streamlit as st
 
 # Display user info if authenticated
-if is_authenticated:
+if st.session_state.is_authenticated:
     st.sidebar.info("You are logged in with Orcid.")
 
     # Display Orcid user info automatically
