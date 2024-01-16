@@ -18,7 +18,7 @@ def get_orcid_user_info(orcid_token):
             "orcid": user_info.get("orcid-identifier", {}).get("path", ""),
         }
     else:
-        return 'problem'
+        return response.status_code
 
 # Display user info if authenticated
 if st.session_state.is_authenticated:
