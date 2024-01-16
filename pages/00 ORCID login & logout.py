@@ -7,7 +7,7 @@ CLIENT_ID = st.secrets["Orcid_ID"]
 CLIENT_SECRET = st.secrets["Orcid_Secret"]
 # REDIRECT_URI = "https://orcid-app-u9tbyykcsuwozua46jf3hk.streamlit.app/"
 # REDIRECT_URI = "https://geo-cosmo-data-sharing-platform-bvniuih82j6l2aeq3jxfyb.streamlit.app/"
-REDIRECT_URI = "https://geo-cosmo-data-sharing-platform-bvniuih82j6l2aeq3jxfyb.streamlit.app/ORCID_login_&_logout"
+REDIRECT_URI = "https://geo-cosmo-data-sharing-platform-bvniuih82j6l2aeq3jxfyb.streamlit.app/ORCID_login"
 ORCID_API_URL = "https://pub.orcid.org/v3.0/"
 
 # Function to get Orcid token
