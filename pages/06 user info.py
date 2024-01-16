@@ -1,4 +1,5 @@
 import streamlit as st
+import requests
 
 # Function to get Orcid user info
 def get_orcid_user_info(orcid_token):
