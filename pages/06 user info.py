@@ -26,6 +26,7 @@ if st.session_state.is_authenticated:
 
     # Display Orcid user info automatically
     orcid_user_info = get_orcid_user_info(st.session_state.orcid_token)
+    st.write('response.status_code', orcid_user_info)
     if orcid_user_info:
         st.write("Orcid User Information:")
         st.write(f"Name: {orcid_user_info['name']}")
