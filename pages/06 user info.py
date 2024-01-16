@@ -6,7 +6,7 @@ ORCID_API_URL = "https://pub.orcid.org/v3.0/"
 # Function to get Orcid user info
 def get_orcid_user_info(orcid_token):
     if not orcid_token:
-        return None
+        return 'not token'
 
     headers = {"Authorization": f"Bearer {orcid_token}"}
     response = requests.get(ORCID_API_URL + "me", headers=headers)
