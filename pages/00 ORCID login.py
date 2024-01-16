@@ -70,9 +70,9 @@ if not st.session_state.is_authenticated:
 
         if authorization_response:
             # Get Orcid token
-            st.session_state.orcid_token = get_orcid_token(authorization_response)
+            orcid_token = get_orcid_token(authorization_response)
 
-            if st.session_state.orcid_token:
+            if orcid_token:
                 st.session_state.is_authenticated = True
                 st.session_state.orcid_token = orcid_token
                 st.success("Successfully logged in with ORCID")
@@ -83,7 +83,7 @@ if st.session_state.is_authenticated:
     st.sidebar.success("You are logged in with ORCID")
 
     # Display Orcid user info automatically
-    orcid_user_info = get_orcid_user_info(st.session_state.orcid_token)
+    orcid_user_info = get_orcid_user_info(orcid_token)
     st.write('response.status_code', orcid_user_info)
     if orcid_user_info:
         st.write("Orcid User Information:")
