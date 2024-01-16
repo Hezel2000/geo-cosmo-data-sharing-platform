@@ -51,6 +51,9 @@ st.write('Click on the button, click on the link – then authenticate.')
 st.write('After the redirect to this page, click again on login – and you are all set.')
 st.write('This will become more streamlined in the future.')
 
+st.write(' ')
+st.write('To logout – simply return to this page and you will be logged aout fro ORCID.')
+
 # Check if the user is authenticated
 st.session_state.is_authenticated = False #st.session_state.get("is_authenticated", False)
 

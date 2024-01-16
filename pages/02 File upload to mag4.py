@@ -7,7 +7,7 @@ import base64
 import pandas as pd
 from datetime import datetime    
 
-st.session_state.is_authenticated=True
+#st.session_state.is_authenticated=True
 
 def upload_to_github(file_path, commit_message, file_type):
     repo_owner = "Hezel2000"
