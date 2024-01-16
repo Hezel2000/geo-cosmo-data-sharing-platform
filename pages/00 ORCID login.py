@@ -42,7 +42,7 @@ def get_orcid_user_info(orcid_token):
 
     if response.status_code == 200:
         user_info = response.json()
-        return response.text()
+        return user_info
         return {
             "name": user_info.get("name", ""),
             "orcid": user_info.get("sub", ""),  # Using 'sub' as Orcid ID, you may need to adjust this based on the response format
