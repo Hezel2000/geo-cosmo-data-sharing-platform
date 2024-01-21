@@ -113,7 +113,7 @@ if uploaded_file is not None:
 
 # ---------- Metadata Preview
     st.subheader('Preview')
-    st.write(st.session_state.orcid_user_info['sub'])
+    st.write(file_path.name)
     json_metadata = {
         # , jupyter notebook
         "ORCID": str(st.session_state.orcid_user_info['sub']),
