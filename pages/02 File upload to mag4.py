@@ -91,7 +91,6 @@ if uploaded_file is not None:
 # ---------- Metadata Fields
     st.header('Metadata')
     st.subheader('Mandatory')
-    st.write(uploaded_file.name.split('.')[0])
     st.text_input('ORCID', st.session_state.orcid_user_info['sub'], disabled=True),
     st.text_input('Name', st.session_state.orcid_user_info['given_name'] +' '+ st.session_state.orcid_user_info['family_name'], disabled=True)
     # meta_email = st.text_input('Email address', value=None, placeholder='Email addressyour email address')
@@ -144,7 +143,7 @@ if uploaded_file is not None:
 
 
 # ---------- Commit and push changes to GitHub
-    if meta_title == None or meta_short_title == None or meta_keywords == None or meta_description == None or meta_type == None or meta_usage_licence == None:
+    if meta_short_title == None or meta_keywords == None or meta_description == None or meta_type == None or meta_usage_licence == None:
         st.session_state.all_metadata_added = True
         st.write('All mandatory metadata need to be added (with sensible information).')
     else:
