@@ -106,6 +106,7 @@ if uploaded_file is not None:
 
 # ---------- Metadata Preview
     st.subheader('Preview')
+    st.write(meta_orcid)
     json_metadata = {
         # , jupyter notebook
         "ORCID": meta_orcid,
@@ -123,7 +124,7 @@ if uploaded_file is not None:
         "References": meta_references if meta_references is not None else None,
         "Comments": meta_comments if meta_comments is not None else None
     }
-st.write(meta_orcid)
+
     #Writing the json file
     metadata_json_file_name = uploaded_file.name.split('.')[0]+'.json'
     file_path_json_metadata = Path("datasets/metadata") / metadata_json_file_name
