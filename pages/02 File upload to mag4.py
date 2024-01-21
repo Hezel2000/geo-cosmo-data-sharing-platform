@@ -130,7 +130,7 @@ if uploaded_file is not None:
     #Writing the json file
     metadata_json_file_name = uploaded_file.name.split('.')[0]+'.json'
     file_path_json_metadata = Path("datasets/metadata") / metadata_json_file_name
-    #st.write(file_path_json_metadata)
+    st.write(file_path_json_metadata)
 
     with open(file_path_json_metadata, "w") as f:
         json.dump(json_metadata, f)
