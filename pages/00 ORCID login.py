@@ -92,18 +92,18 @@ if st.session_state.is_authenticated:
     st.sidebar.success("You are logged in with ORCID")
 
     # Display Orcid user info automatically
-    orcid_user_info = get_orcid_user_info(orcid_token)
-    st.write('response.status_code', orcid_user_info)
-    st.write('name', orcid_user_info['family_name'])
-    if orcid_user_info:
+    st.session_state.orcid_user_info = get_orcid_user_info(orcid_token)
+    st.write('response.status_code', st.session_state.orcid_user_info)
+    st.write('name', st.session_state.orcid_user_info['family_name'])
+    if st.session_state.orcid_user_info:
         st.write("Orcid User Information:")
-        st.write(f"Name: {orcid_user_info['given_name']} {orcid_user_info['familiy_name']}")
-        st.write(f"Orcid ID: {orcid_user_info['sub']}")
+        st.write(f"Name: {st.session_state.orcid_user_info['given_name']} {st.session_state.orcid_user_info['familiy_name']}")
+        st.write(f"Orcid ID: {st.session_state.orcid_user_info['sub']}")
 
     # Your existing Streamlit content goes here
     st.title('Your uploaded files')
     st.write('A simply filtered table with your uploaded datasets, with a number of editing options: update, delete (restricted!)')
-    st.write('orcid_user_info', orcid_user_info)
+    st.write('orcid_user_info', st.session_state.orcid_user_info)
     
 else:
     st.sidebar.error('You are not loged in to ORCID')

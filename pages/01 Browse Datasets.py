@@ -19,12 +19,15 @@ for metadata_file in metadata_files:
         res = json.load(file)
         metadata_info[metadata_file] = res
 
-df = pd.DataFrame(metadata_info).T.reset_index(drop=True)
+#df = pd.DataFrame(metadata_info).T.reset_index(drop=True)
+df = pd.DataFrame(metadata_info).T
 
 sel_dataset = st.selectbox('sel', df['Title'], label_visibility='collapsed')
 
 st.dataframe(pd.read_csv(json_data_files_path + '/' + sel_dataset + '.csv'))
+st.table(metadata_info[df[df['Title'] == sel_dataset].index[0]])
 
+# ------ Siedbar
 
 if st.session_state.is_authenticated:
     st.sidebar.success("You are logged in with ORCID")
