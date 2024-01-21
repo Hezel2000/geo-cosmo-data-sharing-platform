@@ -76,7 +76,7 @@ uploaded_file = st.file_uploader('', type=["csv"], label_visibility='collapsed',
 
 if uploaded_file is not None:
     # Save the uploaded file to the server in the datasets folder
-    file_path_user_dataset = Path("datasets") / uploaded_file.name
+    file_path_user_dataset = Path("datasets/data") / uploaded_file.name
     #st.write(file_path_user_dataset)
     with open(file_path_user_dataset, "wb") as f:
         f.write(uploaded_file.getbuffer())
@@ -92,7 +92,7 @@ if uploaded_file is not None:
     meta_short_title = st.text_input('Short Title', value=None, placeholder='electransener')
     meta_keywords = st.text_input('Keywords (comma separted if more than one – which would be helpful)', value=None, placeholder='eV, absorption, edge, binding, x-ray', help='These are used in the search function. No need to repeat words that are already in the title or description.')
     meta_description = st.text_input('Description', value=None, placeholder='IMA–CNMNC approved mineral symbols')
-    meta_type = st.selectbox('Type of dataset', ('basic', 'standard','example', 'other'), help='basic: e.g., element masses, element-oxide conversion factors, decay constants; standard: composition of (a) reference material(s); example: to be used for testing or education;  other: anything else – please indicate in the comments why you chose other')
+    meta_type = st.selectbox('Type of dataset', ('Basic', 'Database Dataset', 'Standard','Example', 'Other'), help='basic: e.g., element masses, element-oxide conversion factors, decay constants; standard: composition of (a) reference material(s); example: to be used for testing or education;  other: anything else – please indicate in the comments why you chose other')
     meta_usage_licence = st.selectbox('Licence how the uploaded dataset can be used', ('CCO', 'CC-BY', 'CC-BY SA'), help='cf. https://creativecommons.org/share-your-work/cclicenses/')
 
     st.subheader('Optional')
@@ -114,6 +114,7 @@ if uploaded_file is not None:
         "Description": meta_description if meta_description is not None else 'still required',
         "Keywords":  meta_keywords if meta_keywords is not None else 'still required',
         "Type": meta_type if meta_type is not None else 'still required',
+        "Licence": meta_usage_licence if meta_usage_licence is not None else 'still required',
         "Creation Date": meta_creation_date.strftime("%Y-%m-%d") if meta_creation_date is not None else None,
         "Upload Date": datetime.now().strftime("%Y-%m-%d"),
         "Source": meta_source if meta_source is not None else None,
@@ -123,7 +124,7 @@ if uploaded_file is not None:
 
     #Writing the json file
     metadata_json_file_name = uploaded_file.name.split('.')[0]+'.json'
-    file_path_json_metadata = Path("datasets") / metadata_json_file_name
+    file_path_json_metadata = Path("datasets/metadata") / metadata_json_file_name
     #st.write(file_path_json_metadata)
 
     with open(file_path_json_metadata, "w") as f:
