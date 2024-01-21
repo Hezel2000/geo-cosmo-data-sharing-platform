@@ -12,7 +12,7 @@ from datetime import datetime
 def upload_to_github(file_path, commit_message, file_type):
     repo_owner = "Hezel2000"
     repo_name = "geo-cosmo-data-sharing-platform"   #"GeoCosmoChemDataAndTools"
-    branch_name = "main"
+    branch_name = "main/datasets"
     file_name = file_path.name
 
     # Get the content of the existing file on GitHub
