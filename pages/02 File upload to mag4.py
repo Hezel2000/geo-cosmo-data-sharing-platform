@@ -12,11 +12,12 @@ from datetime import datetime
 def upload_to_github(file_path, commit_message, file_type):
     repo_owner = "Hezel2000"
     repo_name = "geo-cosmo-data-sharing-platform"   #"GeoCosmoChemDataAndTools"
-    branch_name = "main/datasets"
+    branch_name = "main"
     file_name = file_path.name
+    github_folder = 'datasets' + "/" + file_name  # Concatenate the target folder and file name
 
     # Get the content of the existing file on GitHub
-    github_api_url = f"https://api.github.com/repos/{repo_owner}/{repo_name}/contents/{file_name}"
+    github_api_url = f"https://api.github.com/repos/{repo_owner}/{repo_name}/contents/{github_folder}"
     response = requests.get(github_api_url)
     
     if response.status_code == 200:
