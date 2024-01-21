@@ -118,7 +118,7 @@ if uploaded_file is not None:
         "ORCID": str(st.session_state.orcid_user_info['sub']),
         "Name": st.session_state.orcid_user_info['given_name'] +' '+ st.session_state.orcid_user_info['family_name'],
         # "Email": meta_email if meta_email is not None else 'still required',
-        "Title": file_path.name,
+        "Title": uploaded_file.name.split('.')[0],
         "Short Title": meta_short_title if meta_short_title is not None else 'still required',
         "Description": meta_description if meta_description is not None else 'still required',
         "Keywords":  meta_keywords if meta_keywords is not None else 'still required',
