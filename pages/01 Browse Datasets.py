@@ -5,8 +5,6 @@ import pandas as pd
 
 st.title('Browse Datasets')
 
-st.subheader('Read in files')
-
 json_metadata_files_path = 'datasets/metadata'
 json_data_files_path = 'datasets/data'
 
