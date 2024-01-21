@@ -20,7 +20,7 @@ for metadata_file in metadata_files:
 #df = pd.DataFrame(metadata_info).T.reset_index(drop=True)
 df = pd.DataFrame(metadata_info).T
 
-sel_dataset = st.selectbox('sel', df['Title'], label_visibility='collapsed')
+sel_dataset = st.selectbox('sel', df['Title'].sort_values(), label_visibility='collapsed')
 
 st.dataframe(pd.read_csv(json_data_files_path + '/' + sel_dataset + '.csv'))
 st.table(metadata_info[df[df['Title'] == sel_dataset].index[0]])
