@@ -91,7 +91,7 @@ if uploaded_file is not None:
 # ---------- Metadata Fields
     st.header('Metadata')
     st.subheader('Mandatory')
-    st.text_input('ORCID', st.session_state.orcid_user_info['sub'], disabled=True),
+    st.text_input('ORCID', st.session_state.orcid_user_info['sub'], disabled=True)
     st.text_input('Name', st.session_state.orcid_user_info['given_name'] +' '+ st.session_state.orcid_user_info['family_name'], disabled=True)
     # meta_email = st.text_input('Email address', value=None, placeholder='Email addressyour email address')
     st.text_input('Title', uploaded_file.name.split('.')[0], disabled=True)
