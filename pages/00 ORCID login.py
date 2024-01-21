@@ -97,7 +97,7 @@ if st.session_state.is_authenticated:
     st.write('name', st.session_state.orcid_user_info['family_name'])
     if st.session_state.orcid_user_info:
         st.write("Orcid User Information:")
-        st.write(f"Name: {st.session_state.orcid_user_info['family_name']}")
+        st.write(f"Name: {st.session_state.orcid_user_info['given_name']} {st.session_state.orcid_user_info['family_name']}")
         # st.write(f"Name: {st.session_state.orcid_user_info['given_name']} {st.session_state.orcid_user_info['familiy_name']}")
         st.write(f"Orcid ID: {st.session_state.orcid_user_info['sub']}")
 
