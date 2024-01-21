@@ -91,6 +91,7 @@ if uploaded_file is not None:
 # ---------- Metadata Fields
     st.header('Metadata')
     st.subheader('Mandatory')
+    st.write(uploaded_file)
     st.write(uploaded_file.name)
     st.text_input('ORCID', st.session_state.orcid_user_info['sub'], disabled=True),
     st.text_input('Name', st.session_state.orcid_user_info['given_name'] +' '+ st.session_state.orcid_user_info['family_name'], disabled=True)
