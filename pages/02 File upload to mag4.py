@@ -103,7 +103,7 @@ if uploaded_file is not None:
     meta_references = st.text_input('Reference(s) (comma separated if more than one)', value=None, placeholder='10.1016/j.chemer.2017.05.003, 10.2138/gselements.16.1.73', help='as dois only. A doi is a **d**igital **o**bject **i**dentifier that is almost always provided with a publication or other digital object such as a database.')
     meta_comments = st.text_input('Comment(s)', value=None, placeholder='everything not coverd above')
 
-st.write(meta_orcid)
+
 # ---------- Metadata Preview
     st.subheader('Preview')
     json_metadata = {
@@ -123,7 +123,7 @@ st.write(meta_orcid)
         "References": meta_references if meta_references is not None else None,
         "Comments": meta_comments if meta_comments is not None else None
     }
-
+st.write(meta_orcid)
     #Writing the json file
     metadata_json_file_name = uploaded_file.name.split('.')[0]+'.json'
     file_path_json_metadata = Path("datasets/metadata") / metadata_json_file_name
