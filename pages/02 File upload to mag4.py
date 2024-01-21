@@ -110,7 +110,7 @@ if uploaded_file is not None:
     st.write(st.session_state.orcid_user_info['sub'])
     json_metadata = {
         # , jupyter notebook
-        #"ORCID": str(st.session_state.orcid_user_info['sub']),
+        "ORCID": str(st.session_state.orcid_user_info['sub']),
         "Name": st.session_state.orcid_user_info['given_name'] +' '+ st.session_state.orcid_user_info['family_name'],
         # "Email": meta_email if meta_email is not None else 'still required',
         "Title": meta_title if meta_title is not None else 'still required',
@@ -126,8 +126,7 @@ if uploaded_file is not None:
         "References": meta_references if meta_references is not None else None,
         "Comments": meta_comments if meta_comments is not None else None
     }
-    st.write(str(st.session_state.orcid_user_info['sub']))
-    st.write(type(st.session_state.orcid_user_info['sub']))
+    
     #Writing the json file
     metadata_json_file_name = uploaded_file.name.split('.')[0]+'.json'
     file_path_json_metadata = Path("datasets/metadata") / metadata_json_file_name
@@ -147,13 +146,13 @@ if uploaded_file is not None:
         st.session_state.all_metadata_added = False
 
     if st.button("Upload to mag4", disabled=st.session_state.all_metadata_added):
-        response = upload_to_github(file_path_user_dataset, meta_orcid, 'csv')
+        response = upload_to_github(file_path_user_dataset, meta_title, 'csv')
         if response.status_code == 201:
             st.success(f"Dataset file was successfully uploaded to GitHub.")
         else:
             st.error(f"Error uploading file to GitHub. Status Code: {response.status_code}, Response: {response.text}")
 
-        response = upload_to_github(file_path_json_metadata, meta_orcid, 'json')
+        response = upload_to_github(file_path_json_metadata, meta_title, 'json')
         if response.status_code == 201:
             st.success(f"Metadata file was successfully uploaded to GitHub.")
         else:
