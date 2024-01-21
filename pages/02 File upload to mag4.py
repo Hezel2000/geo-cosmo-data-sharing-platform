@@ -103,13 +103,12 @@ if uploaded_file is not None:
     meta_references = st.text_input('Reference(s) (comma separated if more than one)', value=None, placeholder='10.1016/j.chemer.2017.05.003, 10.2138/gselements.16.1.73', help='as dois only. A doi is a **d**igital **o**bject **i**dentifier that is almost always provided with a publication or other digital object such as a database.')
     meta_comments = st.text_input('Comment(s)', value=None, placeholder='everything not coverd above')
 
-
+st.write(meta_orcid)
 # ---------- Metadata Preview
     st.subheader('Preview')
     json_metadata = {
         # , jupyter notebook
         "ORCID": meta_orcid,
-        st.write(meta_orcid)
         #"Name": meta_name,
         # "Email": meta_email if meta_email is not None else 'still required',
         "Title": meta_title if meta_title is not None else 'still required',
