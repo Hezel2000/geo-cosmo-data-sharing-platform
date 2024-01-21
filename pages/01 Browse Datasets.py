@@ -17,8 +17,6 @@ for metadata_file in metadata_files:
         res = json.load(file)
         metadata_info[metadata_file] = res
 
-st.write(metadata_info)
-
 #df = pd.DataFrame(metadata_info).T.reset_index(drop=True)
 df = pd.DataFrame(metadata_info).T
 
