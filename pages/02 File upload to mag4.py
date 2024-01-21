@@ -14,7 +14,12 @@ def upload_to_github(file_path, commit_message, file_type):
     repo_name = "geo-cosmo-data-sharing-platform"   #"GeoCosmoChemDataAndTools"
     branch_name = "main"
     file_name = file_path.name
-    github_folder = 'datasets' + "/" + file_name  # Concatenate the target folder and file name
+    if file_type == 'csv':
+        github_folder = 'datasets/data' + "/" + file_name  # Concatenate the target folder and file name
+    elif file_type == 'json':
+        github_folder = 'datasets/metadata' + "/" + file_name  # Concatenate the target folder and file name
+    else:
+        return st.write('Something is wrong with the filetype')
 
     # Get the content of the existing file on GitHub
     github_api_url = f"https://api.github.com/repos/{repo_owner}/{repo_name}/contents/{github_folder}"
