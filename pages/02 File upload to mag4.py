@@ -150,13 +150,13 @@ if uploaded_file is not None:
         st.session_state.all_metadata_added = False
 
     if st.button("Upload to mag4", disabled=st.session_state.all_metadata_added):
-        response = upload_to_github(file_path_user_dataset, meta_title, 'csv')
+        response = upload_to_github(file_path_user_dataset, str(st.session_state.orcid_user_info['sub']), 'csv')
         if response.status_code == 201:
             st.success(f"Dataset file was successfully uploaded to GitHub.")
         else:
             st.error(f"Error uploading file to GitHub. Status Code: {response.status_code}, Response: {response.text}")
 
-        response = upload_to_github(file_path_json_metadata, meta_title, 'json')
+        response = upload_to_github(file_path_json_metadata, str(st.session_state.orcid_user_info['sub']), 'json')
         if response.status_code == 201:
             st.success(f"Metadata file was successfully uploaded to GitHub.")
         else:
