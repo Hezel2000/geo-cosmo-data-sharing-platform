@@ -99,6 +99,7 @@ if uploaded_file is not None:
     st.subheader('Optional')
     meta_available_app = st.text_input('Available App', value=None, placeholder='app url (comma separated if more than one)', help='If you build an app around this dataset, you cann add the link to this app here. Information how to quickly build insight- and/or powerful apps around your dataset can be found on the navigation bar.')
     meta_creation_date = st.date_input('Date when dataset was created', value=None)
+    meta_version = st.text_input('Version', value=None, placeholder='v1.0', help='Just in case there is some kind of "official" version. Otherwise the automatically added uload date will serve as the versioning number/time stamp.')
     meta_source = st.text_input('Source', value=None, placeholder='Karlsruhe Institute of Technology Chart of Nuclides', help='Add the source as name, weblink, ... so the origin of the dataset can be traced back, if it is not yours.')
     meta_references = st.text_input('Reference(s) (comma separated if more than one)', value=None, placeholder='10.1016/j.chemer.2017.05.003, 10.2138/gselements.16.1.73', help='as dois only. A doi is a **d**igital **o**bject **i**dentifier that is almost always provided with a publication or other digital object such as a database.')
     meta_comments = st.text_input('Comment(s)', value=None, placeholder='everything not coverd above')
@@ -120,6 +121,7 @@ if uploaded_file is not None:
         "Licence": meta_usage_licence if meta_usage_licence is not None else 'still required',
         "Creation Date": meta_creation_date.strftime("%Y-%m-%d") if meta_creation_date is not None else None,
         "Upload Date": datetime.now().strftime("%Y-%m-%d"),
+        "Version": meta_version if meta_version is not None else None,
         "Source": meta_source if meta_source is not None else None,
         "References": meta_references if meta_references is not None else None,
         "Comments": meta_comments if meta_comments is not None else None
@@ -139,7 +141,7 @@ if uploaded_file is not None:
 # ---------- Commit and push changes to GitHub
     if meta_orcid == None or meta_name == None or meta_title == None or meta_short_title == None or meta_keywords == None or meta_description == None or meta_type == None or meta_usage_licence == None:
         st.session_state.all_metadata_added = True
-        st.write('All required metadata need to be added (with sensible information).')
+        st.write('All mandatory metadata need to be added (with sensible information).')
     else:
         st.session_state.all_metadata_added = False
 
