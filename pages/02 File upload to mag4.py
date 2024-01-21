@@ -95,7 +95,7 @@ if uploaded_file is not None:
     st.text_input('ORCID', st.session_state.orcid_user_info['sub'], disabled=True),
     st.text_input('Name', st.session_state.orcid_user_info['given_name'] +' '+ st.session_state.orcid_user_info['family_name'], disabled=True)
     # meta_email = st.text_input('Email address', value=None, placeholder='Email addressyour email address')
-    meta_title = st.text_input('Title', value=None, placeholder='Electron Transition Energies')
+    st.text_input('Title', file_path.name)
     meta_short_title = st.text_input('Short Title', value=None, placeholder='electransener')
     meta_keywords = st.text_input('Keywords (comma separted if more than one – which would be helpful)', value=None, placeholder='eV, absorption, edge, binding, x-ray', help='These are used in the search function. No need to repeat words that are already in the title or description.')
     meta_description = st.text_input('Description', value=None, placeholder='IMA–CNMNC approved mineral symbols')
@@ -119,7 +119,7 @@ if uploaded_file is not None:
         "ORCID": str(st.session_state.orcid_user_info['sub']),
         "Name": st.session_state.orcid_user_info['given_name'] +' '+ st.session_state.orcid_user_info['family_name'],
         # "Email": meta_email if meta_email is not None else 'still required',
-        "Title": meta_title if meta_title is not None else 'still required',
+        "Title": file_path.name,
         "Short Title": meta_short_title if meta_short_title is not None else 'still required',
         "Description": meta_description if meta_description is not None else 'still required',
         "Keywords":  meta_keywords if meta_keywords is not None else 'still required',
