@@ -87,7 +87,7 @@ if uploaded_file is not None:
     st.header('Metadata')
     st.subheader('Mandatory')
     meta_orcid = st.text_input(st.session_state.orcid_user_info['sub'], disabled=True),
-    meta_name = st.text_input(st.session_state.orcid_user_info['name'], disabled=True)
+    meta_name = st.text_input(st.session_state.orcid_user_info['family_name'], disabled=True)
     # meta_email = st.text_input('Email address', value=None, placeholder='Email addressyour email address')
     meta_title = st.text_input('Title', value=None, placeholder='Electron Transition Energies')
     meta_short_title = st.text_input('Short Title', value=None, placeholder='electransener')
