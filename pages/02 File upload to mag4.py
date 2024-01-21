@@ -110,7 +110,7 @@ if uploaded_file is not None:
     st.write(st.session_state.orcid_user_info['sub'])
     json_metadata = {
         # , jupyter notebook
-        "ORCID": str(st.session_state.orcid_user_info['sub']),
+        #"ORCID": str(st.session_state.orcid_user_info['sub']),
         "Name": st.session_state.orcid_user_info['given_name'] +' '+ st.session_state.orcid_user_info['family_name'],
         # "Email": meta_email if meta_email is not None else 'still required',
         "Title": meta_title if meta_title is not None else 'still required',
