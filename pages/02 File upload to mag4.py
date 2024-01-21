@@ -108,7 +108,7 @@ if uploaded_file is not None:
     st.subheader('Preview')
     json_metadata = {
         # , jupyter notebook
-        "ORCID": meta_orcid,
+        # "ORCID": meta_orcid,
         #"Name": meta_name,
         # "Email": meta_email if meta_email is not None else 'still required',
         "Title": meta_title if meta_title is not None else 'still required',
