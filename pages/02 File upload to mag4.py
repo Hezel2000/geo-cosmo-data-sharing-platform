@@ -108,7 +108,8 @@ if uploaded_file is not None:
     st.subheader('Preview')
     json_metadata = {
         # , jupyter notebook
-        # "ORCID": meta_orcid,
+        "ORCID": meta_orcid,
+        st.write(meta_orcid)
         #"Name": meta_name,
         # "Email": meta_email if meta_email is not None else 'still required',
         "Title": meta_title if meta_title is not None else 'still required',
@@ -136,7 +137,7 @@ if uploaded_file is not None:
 
 
 # ---------- Commit and push changes to GitHub
-    if meta_orcid == None or meta_email == None or meta_title == None or meta_short_title == None or meta_keywords == None or meta_description == None or meta_type == None or meta_usage_licence == None:
+    if meta_orcid == None or meta_name == None or meta_title == None or meta_short_title == None or meta_keywords == None or meta_description == None or meta_type == None or meta_usage_licence == None:
         st.session_state.all_metadata_added = True
         st.write('All required metadata need to be added (with sensible information).')
     else:
