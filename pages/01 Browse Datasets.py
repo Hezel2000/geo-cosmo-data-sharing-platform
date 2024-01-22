@@ -35,7 +35,8 @@ repo_name = "mag4datasets"
 folder = "metadata"
 
 metadata_files = get_files_from_github(repo_owner, repo_name, folder)
-st.write(pd.DataFrame(metadata_files))
+df = pd.DataFrame(metadata_files).T
+st.write(df)
     
 
 # json_metadata_files_path = 'datasets/metadata'
@@ -53,7 +54,7 @@ st.write(pd.DataFrame(metadata_files))
 # #df = pd.DataFrame(metadata_info).T.reset_index(drop=True)
 # df = pd.DataFrame(metadata_info).T
 
-# sel_dataset = st.selectbox('sel', df['Title'].sort_values(), label_visibility='collapsed')
+sel_dataset = st.selectbox('sel', df['Title'].sort_values(), label_visibility='collapsed')
 
 # st.dataframe(pd.read_csv(json_data_files_path + '/' + sel_dataset + '.csv'))
 # st.table(metadata_info[df[df['Title'] == sel_dataset].index[0]])
