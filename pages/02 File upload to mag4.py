@@ -10,13 +10,13 @@ from datetime import datetime
 
 def upload_to_github(file_path, commit_message, file_type):
     repo_owner = "Hezel2000"
-    repo_name = "geo-cosmo-data-sharing-platform"   #"GeoCosmoChemDataAndTools"
+    repo_name = "mag4datasets" #"geo-cosmo-data-sharing-platform"   #"GeoCosmoChemDataAndTools"
     branch_name = "main"
     file_name = file_path.name
     if file_type == 'csv':
-        github_folder = 'datasets/data' + "/" + file_name  # Concatenate the target folder and file name
+        github_folder = 'data' + "/" + file_name  # Concatenate the target folder and file name
     elif file_type == 'json':
-        github_folder = 'datasets/metadata' + "/" + file_name  # Concatenate the target folder and file name
+        github_folder = 'metadata' + "/" + file_name  # Concatenate the target folder and file name
     else:
         return st.write('Something is wrong with the filetype')
 
@@ -80,8 +80,8 @@ else:
 uploaded_file = st.file_uploader('', type=["csv"], label_visibility='collapsed', disabled=file_uploader_enable_parameter)
 
 if uploaded_file is not None:
-    # Save the uploaded file to the server in the datasets folder
-    file_path_user_dataset = Path("datasets/data") / uploaded_file.name
+    # Save the uploaded file to the server in the data folder
+    file_path_user_dataset = Path("data") / uploaded_file.name
     #st.write(file_path_user_dataset)
     with open(file_path_user_dataset, "wb") as f:
         f.write(uploaded_file.getbuffer())
@@ -133,7 +133,7 @@ if uploaded_file is not None:
     
     #Writing the json file
     metadata_json_file_name = uploaded_file.name.split('.')[0]+'.json'
-    file_path_json_metadata = Path("datasets/metadata") / metadata_json_file_name
+    file_path_json_metadata = Path("metadata") / metadata_json_file_name
 
     with open(file_path_json_metadata, "w") as f:
         json.dump(json_metadata, f)
