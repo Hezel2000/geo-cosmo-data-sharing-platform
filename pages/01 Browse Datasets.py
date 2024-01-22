@@ -30,7 +30,7 @@ def get_json(repo_owner, repo_name, folder):
     else:
         return f"Error: Unable to fetch files. Status code: {response.status_code}"
     
-def get_csv(repo_owner, repo_name, folder):
+def get_csv_urls(repo_owner, repo_name, folder):
     url = f'https://api.github.com/repos/{repo_owner}/{repo_name}/contents/{folder}'
     github_token = st.secrets['GitHub_Token']
     headers = {'Authorization': f'Bearer {github_token}'}
@@ -52,7 +52,8 @@ repo_owner = "Hezel2000"
 repo_name = "mag4datasets"
 folder = "metadata"
 
-metadata_files, file_urls = get_json(repo_owner, repo_name, folder)
+metadata_files = get_json(repo_owner, repo_name, folder)
+file_urls = get_csv_urls(repo_owner, repo_name, folder)
 df = pd.DataFrame(metadata_files).T
 st.write(df)
 st.write(file_urls)
