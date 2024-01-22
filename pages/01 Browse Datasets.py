@@ -35,7 +35,7 @@ repo_name = "mag4datasets"
 folder = "metadata"
 
 metadata_files = get_files_from_github(repo_owner, repo_name, folder)
-#st.write(metadata_files)
+st.write(pd.DataFrame(metadata_files))
     
 
 # json_metadata_files_path = 'datasets/metadata'
@@ -43,22 +43,22 @@ metadata_files = get_files_from_github(repo_owner, repo_name, folder)
 
 # metadata_files = [f for f in os.listdir(json_metadata_files_path) if f.endswith('.json')]
 
-metadata_info = {}
+# metadata_info = {}
 
-for metadata_file in metadata_files:
-    with open(os.path.join(json_metadata_files_path, metadata_file), 'r') as file:
-        res = json.load(file)
-        metadata_info[metadata_file] = res
+# for metadata_file in metadata_files:
+#     with open(os.path.join(json_metadata_files_path, metadata_file), 'r') as file:
+#         res = json.load(file)
+#         metadata_info[metadata_file] = res
 
-#df = pd.DataFrame(metadata_info).T.reset_index(drop=True)
-df = pd.DataFrame(metadata_info).T
+# #df = pd.DataFrame(metadata_info).T.reset_index(drop=True)
+# df = pd.DataFrame(metadata_info).T
 
-sel_dataset = st.selectbox('sel', df['Title'].sort_values(), label_visibility='collapsed')
+# sel_dataset = st.selectbox('sel', df['Title'].sort_values(), label_visibility='collapsed')
 
-st.dataframe(pd.read_csv(json_data_files_path + '/' + sel_dataset + '.csv'))
-st.table(metadata_info[df[df['Title'] == sel_dataset].index[0]])
+# st.dataframe(pd.read_csv(json_data_files_path + '/' + sel_dataset + '.csv'))
+# st.table(metadata_info[df[df['Title'] == sel_dataset].index[0]])
 
-st.write(metadata_info[df[df['Title'] == sel_dataset].index[0]]['Comment'])
+# st.write(metadata_info[df[df['Title'] == sel_dataset].index[0]]['Comment'])
 
 
 # ------ Siedbar
