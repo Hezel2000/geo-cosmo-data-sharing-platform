@@ -28,7 +28,7 @@ def get_files_from_github(repo_owner, repo_name, folder):
             json_data[file['name']] = file_content
             file_urls.append(file_url) 
         
-        return json_data, file_url
+        return json_data, file_urls
     else:
         return f"Error: Unable to fetch files. Status code: {response.status_code}"
 
@@ -36,10 +36,10 @@ repo_owner = "Hezel2000"
 repo_name = "mag4datasets"
 folder = "metadata"
 
-metadata_files, file_url_test = get_files_from_github(repo_owner, repo_name, folder)
+metadata_files, file_urls = get_files_from_github(repo_owner, repo_name, folder)
 df = pd.DataFrame(metadata_files).T
 st.write(df)
-st.write(file_url_test)
+st.write(file_urls)
 
 sel_dataset = st.selectbox('sel', df['Title'].sort_values(), label_visibility='collapsed')
 
