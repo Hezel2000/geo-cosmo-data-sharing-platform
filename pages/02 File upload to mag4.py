@@ -82,10 +82,10 @@ uploaded_file = st.file_uploader('', type=["csv"], label_visibility='collapsed',
 if uploaded_file is not None:
     # Save the uploaded file to the server in the data folder
     file_path_user_dataset = Path("uploads") / uploaded_file.name
-    st.write(file_path_user_dataset)
+    #st.write(file_path_user_dataset)
     with open(file_path_user_dataset, "wb") as f:
         f.write(uploaded_file.getbuffer())
-    st.success(f"File saved to {file_path_user_dataset}")
+    #st.success(f"File saved to {file_path_user_dataset}")
 
 
 # ---------- Metadata Fields
@@ -149,13 +149,13 @@ if uploaded_file is not None:
         st.session_state.all_metadata_added = False
 
     if st.button("Upload to mag4", disabled=st.session_state.all_metadata_added):
-        response = upload_to_github("data", str(st.session_state.orcid_user_info['sub']), 'csv')
+        response = upload_to_github(file_path_user_dataset, str(st.session_state.orcid_user_info['sub']), 'csv')
         if response.status_code == 201:
             st.success(f"Dataset file was successfully uploaded to GitHub.")
         else:
             st.error(f"Error uploading file to GitHub. Status Code: {response.status_code}, Response: {response.text}")
 
-        response = upload_to_github("metadata", str(st.session_state.orcid_user_info['sub']), 'json')
+        response = upload_to_github(metadata_json_file_name, str(st.session_state.orcid_user_info['sub']), 'json')
         if response.status_code == 201:
             st.success(f"Metadata file was successfully uploaded to GitHub.")
         else:
