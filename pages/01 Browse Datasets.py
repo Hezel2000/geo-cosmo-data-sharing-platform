@@ -26,7 +26,7 @@ def get_files_from_github(repo_owner, repo_name, folder):
             
             # Store file content in the dictionary with the filename as the key
             json_data[file['name']] = file_content
-            file_urls.append(file_url) 
+            file_urls.append([file['name'], file_url]) 
         
         return json_data, file_urls
     else:
