@@ -48,12 +48,9 @@ def get_csv_urls(repo_owner, repo_name, folder):
     else:
         return f"Error: Unable to fetch files. Status code: {response.status_code}"
 
-repo_owner = "Hezel2000"
-repo_name = "mag4datasets"
-folder = "metadata"
 
-metadata_files = get_json(repo_owner, repo_name, folder)
-file_urls = get_csv_urls(repo_owner, repo_name, folder)
+metadata_files = get_json("Hezel2000", "mag4datasets", "metadata")
+file_urls = get_csv_urls("Hezel2000", "mag4datasets", "data")
 df = pd.DataFrame(metadata_files).T
 st.write(df)
 st.write(file_urls)
