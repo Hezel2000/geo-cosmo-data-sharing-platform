@@ -36,10 +36,10 @@ repo_owner = "Hezel2000"
 repo_name = "mag4datasets"
 folder = "metadata"
 
-metadata_files = get_files_from_github(repo_owner, repo_name, folder)
+metadata_files, file_url_test = get_files_from_github(repo_owner, repo_name, folder)
 df = pd.DataFrame(metadata_files).T
 st.write(df)
-st.write(file_url)
+st.write(file_url_test)
 
 sel_dataset = st.selectbox('sel', df['Title'].sort_values(), label_visibility='collapsed')
 
