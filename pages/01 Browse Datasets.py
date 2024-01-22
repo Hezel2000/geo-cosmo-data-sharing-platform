@@ -26,13 +26,13 @@ def get_files_from_github(repo_owner, repo_name, folder):
             # Store file content in the dictionary with the filename as the key
             json_data[file['name']] = file_content
         
-        return response.json()
+        return json_data
     else:
         return f"Error: Unable to fetch files. Status code: {response.status_code}"
 
 repo_owner = "Hezel2000"
 repo_name = "mag4datasets"
-folder = "data"
+folder = "metadata"
 
 
 st.write(get_files_from_github(repo_owner, repo_name, folder))
