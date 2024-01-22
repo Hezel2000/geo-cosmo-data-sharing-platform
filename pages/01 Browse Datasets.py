@@ -44,7 +44,7 @@ def get_csv_urls(repo_owner, repo_name, folder):
         file_urls = []
         for file in files:
             file_urls.append([file['name'], file['download_url']])
-        return file_urls
+        return files
     else:
         return f"Error: Unable to fetch files. Status code: {response.status_code}"
 
@@ -66,12 +66,12 @@ st.dataframe(pd.read_csv(file_urls[0][1]))
 # st.write(metadata_info[df[df['Title'] == sel_dataset].index[0]]['Comment'])
 
 
-# ------ Siedbar
+# # ------ Siedbar
 
-if st.session_state.is_authenticated:
-    st.sidebar.success("You are logged in with ORCID")
-else:
-    st.sidebar.error("ORCID login required for full functionality")
+# if st.session_state.is_authenticated:
+#     st.sidebar.success("You are logged in with ORCID")
+# else:
+#     st.sidebar.error("ORCID login required for full functionality")
 
 
 
