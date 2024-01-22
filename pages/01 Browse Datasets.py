@@ -14,15 +14,26 @@ def get_files_from_github(repo_owner, repo_name, folder):
     response = requests.get(url, headers=headers)
     
     if response.status_code == 200:
-        files = [file['download_url'] for file in response.json()]
-        return files
+        json_files = [file for file in response.json() if file['name'].endswith('.json')]
+        
+        # Fetch and store the contents of each JSON file
+        json_data = {}
+        for file in json_files:
+            file_url = file['download_url']
+            file_response = requests.get(file_url, headers=headers)
+            file_content = json_response.json()
+            
+            # Store file content in the dictionary with the filename as the key
+            json_data[file['name']] = file_content
+        
+        return json_data
     else:
         return f"Error: Unable to fetch files. Status code: {response.status_code}"
 
 repo_owner = "Hezel2000"
 repo_name = "mag4datasets"
 folder = "data"
-# github_token = st.secrets['GitHub_Token']
+
 
 st.write(get_files_from_github(repo_owner, repo_name, folder))
 
