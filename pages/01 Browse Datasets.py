@@ -28,7 +28,7 @@ def get_files_from_github(repo_owner, repo_name, folder):
             json_data[file['name']] = file_content
             file_urls.append(file_url) 
         
-        return json_data, file_urls
+        return json_data, file_url
     else:
         return f"Error: Unable to fetch files. Status code: {response.status_code}"
 
@@ -39,7 +39,7 @@ folder = "metadata"
 metadata_files = get_files_from_github(repo_owner, repo_name, folder)
 df = pd.DataFrame(metadata_files).T
 st.write(df)
-st.write(file_urls)
+st.write(file_url)
 
 sel_dataset = st.selectbox('sel', df['Title'].sort_values(), label_visibility='collapsed')
 
