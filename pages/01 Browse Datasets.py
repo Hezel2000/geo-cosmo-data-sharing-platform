@@ -18,6 +18,7 @@ def get_files_from_github(repo_owner, repo_name, folder):
         
         # Fetch and store the contents of each JSON file
         json_data = {}
+        file_urls = []
         for file in json_files:
             file_url = file['download_url']
             file_content_response = requests.get(file_url, headers=headers)
@@ -25,8 +26,9 @@ def get_files_from_github(repo_owner, repo_name, folder):
             
             # Store file content in the dictionary with the filename as the key
             json_data[file['name']] = file_content
+            file_urls.append(file_url) 
         
-        return json_data
+        return json_data, file_urls
     else:
         return f"Error: Unable to fetch files. Status code: {response.status_code}"
 
@@ -37,22 +39,7 @@ folder = "metadata"
 metadata_files = get_files_from_github(repo_owner, repo_name, folder)
 df = pd.DataFrame(metadata_files).T
 st.write(df)
-    
-
-# json_metadata_files_path = 'datasets/metadata'
-# json_data_files_path = 'datasets/data'
-
-# metadata_files = [f for f in os.listdir(json_metadata_files_path) if f.endswith('.json')]
-
-# metadata_info = {}
-
-# for metadata_file in metadata_files:
-#     with open(os.path.join(json_metadata_files_path, metadata_file), 'r') as file:
-#         res = json.load(file)
-#         metadata_info[metadata_file] = res
-
-# #df = pd.DataFrame(metadata_info).T.reset_index(drop=True)
-# df = pd.DataFrame(metadata_info).T
+st.write(file_urls)
 
 sel_dataset = st.selectbox('sel', df['Title'].sort_values(), label_visibility='collapsed')
 
