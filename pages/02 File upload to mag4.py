@@ -133,7 +133,7 @@ if uploaded_file is not None:
     
     #Writing the json file
     metadata_json_file_name = uploaded_file.name.split('.')[0]+'.json'
-    file_path_json_metadata = Path("metadata") / metadata_json_file_name
+    file_path_json_metadata = Path("uploads") / metadata_json_file_name
 
     with open(file_path_json_metadata, "w") as f:
         json.dump(json_metadata, f)
@@ -149,13 +149,13 @@ if uploaded_file is not None:
         st.session_state.all_metadata_added = False
 
     if st.button("Upload to mag4", disabled=st.session_state.all_metadata_added):
-        response = upload_to_github(file_path_user_dataset, str(st.session_state.orcid_user_info['sub']), 'csv')
+        response = upload_to_github("data", str(st.session_state.orcid_user_info['sub']), 'csv')
         if response.status_code == 201:
             st.success(f"Dataset file was successfully uploaded to GitHub.")
         else:
             st.error(f"Error uploading file to GitHub. Status Code: {response.status_code}, Response: {response.text}")
 
-        response = upload_to_github(file_path_json_metadata, str(st.session_state.orcid_user_info['sub']), 'json')
+        response = upload_to_github("metadata", str(st.session_state.orcid_user_info['sub']), 'json')
         if response.status_code == 201:
             st.success(f"Metadata file was successfully uploaded to GitHub.")
         else:
