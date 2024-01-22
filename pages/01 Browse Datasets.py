@@ -22,7 +22,7 @@ def get_files_from_github(repo_owner, repo_name, folder):
 
 repo_owner = "Hezel2000"
 repo_name = "mag4datasets"
-folder = "main"
+folder = "data"
 # github_token = st.secrets['GitHub_Token']
 
 st.write(get_files_from_github(repo_owner, repo_name, folder))
