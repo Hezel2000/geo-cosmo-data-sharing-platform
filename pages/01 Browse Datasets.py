@@ -41,9 +41,9 @@ def get_csv_urls(repo_owner, repo_name, folder):
         files = [file for file in response.json() if file['name'].endswith('.csv')]
         
         # Fetch and store the contents of each JSON file
-        file_urls = []
+        file_urls = {}
         for file in files:
-            file_urls.append([file['name'], file['download_url']])
+            file_urls[file['name']] = file['download_url']
         return file_urls
     else:
         return f"Error: Unable to fetch files. Status code: {response.status_code}"
@@ -57,10 +57,12 @@ st.write(file_urls)
 
 sel_dataset = st.selectbox('sel', df_metadata['Title'].sort_values(), label_visibility='collapsed')
 
-st.dataframe(pd.read_csv(file_urls[0][1]))
-st.table(metadata_info[df_metadata[df_metadata['Title'] == sel_dataset].index[0]])
+st.write(file_urls)
 
-st.write(metadata_info[df_metadata[df_metadata['Title'] == sel_dataset].index[0]]['Comment'])
+st.dataframe(pd.read_csv(file_urls[0][1]))
+st.table(metadata_files[df_metadata[df_metadata['Title'] == sel_dataset].index[0]])
+
+st.write(metadata_files[df_metadata[df_metadata['Title'] == sel_dataset].index[0]]['Comment'])
 
 
 # # ------ Siedbar
