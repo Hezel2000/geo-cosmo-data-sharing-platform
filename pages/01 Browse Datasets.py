@@ -6,7 +6,7 @@ import pandas as pd
 
 st.title('Browse Datasets')
 
-def get_files_from_github(repo_owner, repo_name, folder):
+def get_json(repo_owner, repo_name, folder):
     url = f'https://api.github.com/repos/{repo_owner}/{repo_name}/contents/{folder}'
     github_token = st.secrets['GitHub_Token']
     headers = {'Authorization': f'Bearer {github_token}'}
@@ -14,21 +14,37 @@ def get_files_from_github(repo_owner, repo_name, folder):
     response = requests.get(url, headers=headers)
     
     if response.status_code == 200:
-        json_files = [file for file in response.json() if file['name'].endswith('.json')]
+        files = [file for file in response.json() if file['name'].endswith('.json')]
         
         # Fetch and store the contents of each JSON file
         json_data = {}
-        file_urls = []
-        for file in json_files:
+        for file in files:
             file_url = file['download_url']
             file_content_response = requests.get(file_url, headers=headers)
             file_content = file_content_response.json()  # Corrected line
             
             # Store file content in the dictionary with the filename as the key
             json_data[file['name']] = file_content
-            file_urls.append([file['name'].split()[0], file_url]) 
         
-        return json_data, file_urls
+        return json_data
+    else:
+        return f"Error: Unable to fetch files. Status code: {response.status_code}"
+    
+def get_csv(repo_owner, repo_name, folder):
+    url = f'https://api.github.com/repos/{repo_owner}/{repo_name}/contents/{folder}'
+    github_token = st.secrets['GitHub_Token']
+    headers = {'Authorization': f'Bearer {github_token}'}
+    
+    response = requests.get(url, headers=headers)
+    
+    if response.status_code == 200:
+        files = [file for file in response.json() if file['name'].endswith('.csv')]
+        
+        # Fetch and store the contents of each JSON file
+        file_urls = []
+        for file in files:
+            file_urls.append([file['name'], file['download_url']])
+        return file_urls
     else:
         return f"Error: Unable to fetch files. Status code: {response.status_code}"
 
@@ -36,10 +52,10 @@ repo_owner = "Hezel2000"
 repo_name = "mag4datasets"
 folder = "metadata"
 
-metadata_files, file_urls = get_files_from_github(repo_owner, repo_name, folder)
+metadata_files, file_urls = get_json(repo_owner, repo_name, folder)
 df = pd.DataFrame(metadata_files).T
 st.write(df)
-st.write(file_urls[0][1])
+st.write(file_urls)
 
 sel_dataset = st.selectbox('sel', df['Title'].sort_values(), label_visibility='collapsed')
 
