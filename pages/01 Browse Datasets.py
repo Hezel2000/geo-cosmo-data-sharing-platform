@@ -6,6 +6,7 @@ import pandas as pd
 
 st.title('Browse Datasets')
 
+@st.cache_data
 def get_json(repo_owner, repo_name, folder):
     url = f'https://api.github.com/repos/{repo_owner}/{repo_name}/contents/{folder}'
     github_token = st.secrets['GitHub_Token']
@@ -30,6 +31,7 @@ def get_json(repo_owner, repo_name, folder):
     else:
         return f"Error: Unable to fetch files. Status code: {response.status_code}"
     
+@st.cache_data
 def get_csv_urls(repo_owner, repo_name, folder):
     url = f'https://api.github.com/repos/{repo_owner}/{repo_name}/contents/{folder}'
     github_token = st.secrets['GitHub_Token']
@@ -51,13 +53,15 @@ def get_csv_urls(repo_owner, repo_name, folder):
 
 metadata_files = get_json("Hezel2000", "mag4datasets", "metadata")
 file_urls = get_csv_urls("Hezel2000", "mag4datasets", "data")
+
 df_metadata = pd.DataFrame(metadata_files).T
 st.write(metadata_files)
 
 sel_dataset = st.selectbox('sel', df_metadata['Title'].sort_values(), label_visibility='collapsed')
 
 st.dataframe(pd.read_csv(file_urls[sel_dataset]))
-st.table(df_metadata[df_metadata['Title'] == sel_dataset].index[0])
+st.table(metadata_files[sel_dataset+'.json'])
+#st.table(df_metadata[df_metadata['Title'] == sel_dataset].index[0])
 
 st.write(metadata_files[df_metadata[df_metadata['Title'] == sel_dataset].index[0]]['Comment'])
 
