@@ -43,7 +43,7 @@ st.write(file_urls[0][1])
 
 sel_dataset = st.selectbox('sel', df['Title'].sort_values(), label_visibility='collapsed')
 
- st.dataframe(pd.read_csv(file_urls[0][1]))
+st.dataframe(pd.read_csv(file_urls[0][1]))
 # st.table(metadata_info[df[df['Title'] == sel_dataset].index[0]])
 
 # st.write(metadata_info[df[df['Title'] == sel_dataset].index[0]]['Comment'])
