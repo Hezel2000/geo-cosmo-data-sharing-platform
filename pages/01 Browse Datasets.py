@@ -51,16 +51,16 @@ def get_csv_urls(repo_owner, repo_name, folder):
 
 metadata_files = get_json("Hezel2000", "mag4datasets", "metadata")
 file_urls = get_csv_urls("Hezel2000", "mag4datasets", "data")
-df = pd.DataFrame(metadata_files).T
-st.write(df)
+df_metadata = pd.DataFrame(metadata_files).T
+st.write(df_metadata)
 st.write(file_urls)
 
-sel_dataset = st.selectbox('sel', df['Title'].sort_values(), label_visibility='collapsed')
+sel_dataset = st.selectbox('sel', df_metadata['Title'].sort_values(), label_visibility='collapsed')
 
 st.dataframe(pd.read_csv(file_urls[0][1]))
-# st.table(metadata_info[df[df['Title'] == sel_dataset].index[0]])
+st.table(metadata_info[df_metadata[df_metadata['Title'] == sel_dataset].index[0]])
 
-# st.write(metadata_info[df[df['Title'] == sel_dataset].index[0]]['Comment'])
+st.write(metadata_info[df_metadata[df_metadata['Title'] == sel_dataset].index[0]]['Comment'])
 
 
 # # ------ Siedbar
