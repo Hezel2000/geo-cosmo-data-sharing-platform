@@ -15,7 +15,6 @@ def get_files_from_github(repo_owner, repo_name, folder):
     
     if response.status_code == 200:
         files = [file['download_url'] for file in response.json()]
-        files = response.status_code
         return files
     else:
         return f"Error: Unable to fetch files. Status code: {response.status_code}"
