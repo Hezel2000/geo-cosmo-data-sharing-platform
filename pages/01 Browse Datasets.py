@@ -14,7 +14,7 @@ def get_files_from_github(repo_owner, repo_name, folder):
     response = requests.get(url, headers=headers)
     
     if response.status_code == 200:
-        json_files = [file for file in response.json() if file['name'].endswith('.json')]
+        json_files = [file for file in response.json()]# if file['name'].endswith('.json')]
         
         # Fetch and store the contents of each JSON file
         json_data = {}
