@@ -81,7 +81,7 @@ uploaded_file = st.file_uploader('', type=["csv"], label_visibility='collapsed',
 
 if uploaded_file is not None:
     # Save the uploaded file to the server in the data folder
-    file_path_user_dataset = Path("data") / uploaded_file.name
+    file_path_user_dataset = Path("uploads") / uploaded_file.name
     #st.write(file_path_user_dataset)
     with open(file_path_user_dataset, "wb") as f:
         f.write(uploaded_file.getbuffer())
