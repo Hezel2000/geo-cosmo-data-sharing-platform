@@ -26,7 +26,7 @@ def get_files_from_github(repo_owner, repo_name, folder):
             # Store file content in the dictionary with the filename as the key
             json_data[file['name']] = file_content
         
-        return json_data
+        return json_files
     else:
         return f"Error: Unable to fetch files. Status code: {response.status_code}"
 
