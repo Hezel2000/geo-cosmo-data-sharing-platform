@@ -43,7 +43,7 @@ def get_csv_urls(repo_owner, repo_name, folder):
         # Fetch and store the contents of each JSON file
         file_urls = {}
         for file in files:
-            file_urls[file['name'].split()[0]] = file['download_url']
+            file_urls[file['name'].split('.')[0]] = file['download_url']
         return file_urls
     else:
         return f"Error: Unable to fetch files. Status code: {response.status_code}"
