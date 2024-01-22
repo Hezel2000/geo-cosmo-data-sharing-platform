@@ -1,0 +1,16 @@
+{
+    "ORCID": "0000-0002-5059-2281",
+    "Name": "Dominik Hezel",
+    "Title": "Abbreviated Mineral Symbols",
+    "Short Title": "abminsym",
+    "Description": "IMA–CNMNC approved mineral symbols",
+    "Keywords":  "xxx",
+    "References": "Warr LN (2021) Mineralogical Magazine, 85:3, 291-320",
+    "dois": "https://doi.org/10.1180/mgm.2021.43",
+    "Source": "paper supplement by L. N. Warr",
+    "Type": "basic",
+    "Licence": "CC-BY-SA",
+    "Upload Date": "09.12.2023",
+    "Creation Date": "08.06.2021",
+    "Comment": "Another string with\n  multiple\n  line breaks."
+}

@@ -1,20 +1,5 @@
-{
-    "ORCID": "0000-0002-5059-2281",
-    "Email": "dominik.hezel@em.uni-frankfurt.de",
-    "Title": "Chemical Element Properties",
-    "Short Title": "chemelprop",
-    "Description": "IMA–CNMNC approved mineral symbols",
-    "Keywords":  "xxx",
-    "References": "Warr LN (2021) Mineralogical Magazine, 85:3, 291-320",
-    "dois": "https://doi.org/10.1180/mgm.2021.43",
-    "Source": "paper supplement by L. N. Warr",
-    "Type": "basic",
-    "Licence": "CC-BY-SA",
-    "Upload Date": "09.12.2023",
-    "Creation Date": "08.06.2021",
-    "Comment": "last update of the dataset: 08.06.2021 by L. N. Warr \n
-    based largely on IMA list (http://cnmnc.main.jp/) May 2021 version \n
-    
+'''last update of the dataset: 08.06.2021 by L. N. Warr
+    based largely on IMA list (http://cnmnc.main.jp/) May 2021 version
     Symbol rules
     1: The first two or three letters of the mineral name (e.g. Saponite = Sap) if not common to many mineral phases.
     2: A combination of three or four letters that are characteristic of the mineral name (e.g. Chamosite = Chm)
@@ -52,6 +37,4 @@
     V: Viandio-
     Z: Zinc- (or Zn), Zinco- (or Zn)
 
-    Common name components"
-
-}
+    Common name components'''
