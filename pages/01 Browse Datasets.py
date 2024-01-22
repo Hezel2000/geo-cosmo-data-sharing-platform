@@ -59,17 +59,14 @@ sel_dataset = st.selectbox('sel', df_metadata['Title'].sort_values(), label_visi
 
 st.dataframe(pd.read_csv(file_urls[sel_dataset]))
 st.table(metadata_files[sel_dataset+'.json'])
-st.table(metadata_files[sel_dataset+'.json']['Comment'])
-#st.table(df_metadata[df_metadata['Title'] == sel_dataset].index[0])
-#st.write(metadata_files[df_metadata[df_metadata['Title'] == sel_dataset].index[0]]['Comment'])
 
 
-# # ------ Siedbar
+# ------ Siedbar
 
-# if st.session_state.is_authenticated:
-#     st.sidebar.success("You are logged in with ORCID")
-# else:
-#     st.sidebar.error("ORCID login required for full functionality")
+if st.session_state.is_authenticated:
+    st.sidebar.success("You are logged in with ORCID")
+else:
+    st.sidebar.error("ORCID login required for full functionality")
 
 
 
