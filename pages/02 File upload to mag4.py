@@ -10,7 +10,7 @@ from datetime import datetime
 
 def upload_to_github(file_path, commit_message, file_type):
     repo_owner = "Hezel2000"
-    repo_name = "mag4datasets" #"geo-cosmo-data-sharing-platform"   #"GeoCosmoChemDataAndTools"
+    repo_name = "mag4datasets"
     branch_name = "main"
     file_name = file_path.name
     if file_type == 'csv':
