@@ -26,7 +26,7 @@ def get_files_from_github(repo_owner, repo_name, folder):
             
             # Store file content in the dictionary with the filename as the key
             json_data[file['name']] = file_content
-            file_urls.append([file['name'], file_url]) 
+            file_urls.append([file['name'].split()[0], file_url]) 
         
         return json_data, file_urls
     else:
@@ -39,11 +39,11 @@ folder = "metadata"
 metadata_files, file_urls = get_files_from_github(repo_owner, repo_name, folder)
 df = pd.DataFrame(metadata_files).T
 st.write(df)
-st.write(file_urls)
+st.write(file_urls[0][1])
 
 sel_dataset = st.selectbox('sel', df['Title'].sort_values(), label_visibility='collapsed')
 
-# st.dataframe(pd.read_csv(json_data_files_path + '/' + sel_dataset + '.csv'))
+ st.dataframe(pd.read_csv(file_urls[0][1]))
 # st.table(metadata_info[df[df['Title'] == sel_dataset].index[0]])
 
 # st.write(metadata_info[df[df['Title'] == sel_dataset].index[0]]['Comment'])
