@@ -155,7 +155,7 @@ if uploaded_file is not None:
         else:
             st.error(f"Error uploading file to GitHub. Status Code: {response.status_code}, Response: {response.text}")
 
-        response = upload_to_github(metadata_json_file_name, str(st.session_state.orcid_user_info['sub']), 'json')
+        response = upload_to_github(file_path_json_metadata, str(st.session_state.orcid_user_info['sub']), 'json')
         if response.status_code == 201:
             st.success(f"Metadata file was successfully uploaded to GitHub.")
         else:
