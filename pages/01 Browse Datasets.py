@@ -20,8 +20,8 @@ def get_files_from_github(repo_owner, repo_name, folder):
         json_data = {}
         for file in json_files:
             file_url = file['download_url']
-            file_response = requests.get(file_url, headers=headers)
-            file_content = json_response.json()
+            file_content_response = requests.get(file_url, headers=headers)
+            file_content = file_content_response.json()  # Corrected line
             
             # Store file content in the dictionary with the filename as the key
             json_data[file['name']] = file_content
